@@ -1,14 +1,14 @@
 <template>
   <navbar
     position="fixed"
-    type="primary"
+    type="info"
     :transparent="transparent"
     :color-on-scroll="colorOnScroll"
     menu-classes="ml-auto"
   >
     <template>
       <router-link v-popover:popover1 class="navbar-brand" to="/">
-        Now Ui Kit
+        Plan It
       </router-link>
       <el-popover
         ref="popover1"
@@ -26,11 +26,10 @@
       <li class="nav-item">
         <a
           class="nav-link"
-          href="https://www.creative-tim.com/product/vue-now-ui-kit"
-          target="_blank"
+          href="/"
         >
           <i class="now-ui-icons arrows-1_cloud-download-93"></i>
-          <p>Download</p>
+          <p>Planner</p>
         </a>
       </li>
       <drop-down
