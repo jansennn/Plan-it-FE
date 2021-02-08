@@ -1,5 +1,5 @@
 <template>
-  <div class="page-header clear-filter" filter-color="orange">
+  <div class="page-header clear-filter" filter-color="blue">
     <div
       class="page-header-image"
       style="background-image: url('img/login.jpg')"
@@ -9,7 +9,7 @@
         <div class="col-md-5 ml-auto mr-auto">
           <card type="login" plain>
             <div slot="header" class="logo-container">
-              <img v-lazy="'img/now-logo.png'" alt="" />
+              <img v-lazy="'img/logo-home.png'" alt="" />
             </div>
 
             <fg-input
@@ -30,7 +30,7 @@
               <div class="card-footer text-center">
                 <a
                   href="#pablo"
-                  class="btn btn-primary btn-round btn-lg btn-block"
+                  class="btn btn-info btn-round btn-lg btn-block"
                   >Get Started</a
                 >
               </div>

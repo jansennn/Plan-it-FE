@@ -1,0 +1,17 @@
+.section .container .row .col-md-8  h1{
+  font-weight: 800;
+}
+
+.section .container .row .col-md-4 .image-destination{
+  max-width: 100%;
+  height: auto;
+}
+
+.title-2{
+  font-weight: 800;
+}
+
+.image-traveler{
+  max-width: 80%;
+  height: auto;
+}
