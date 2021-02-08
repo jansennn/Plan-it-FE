@@ -4,7 +4,7 @@
       <h1 class="text-center title">Trip Planner Benefit</h1>
       <div class="row">
         <div class="col-md-4">
-          <img src="destination.png" alt="" class="float-left image-destination">
+          <img src="ilustrator/destination.png" alt="" class="float-left image-destination">
         </div>
         <div class="col-md-8">
           <h1>1.</h1>
@@ -28,12 +28,12 @@
           </ul>
         </div>
         <div class="col-md-4">
-           <img src="travelers.png" alt="" class="float-right image-traveler"> 
+           <img src="ilustrator/travelers.png" alt="" class="float-right image-traveler"> 
         </div>
       </div>
       <div class="row">
         <div class="col-md-4">
-          <img src="destination.png" alt="" class="float-left image-destination">
+          <img src="ilustrator/booking.png" alt="" class="float-left image-booking">
         </div>
         <div class="col-md-8">
           <h1>3.</h1>
