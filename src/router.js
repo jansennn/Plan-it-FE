@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Landing from './pages/Landing.vue';
 import Login from './pages/Login.vue';
+import Register from './pages/Register.vue';
 import Profile from './pages/Profile.vue';
 import Home from './pages/Home.vue';
 import Planner from './pages/Planner.vue';
@@ -56,7 +57,15 @@ export default new Router({
         header: { colorOnScroll: 400 },
         footer: { backgroundColor: 'black' }
       }
-    }
+    },
+    {
+      path: '/register',
+      name: 'register',
+      components: { default: Register, header: MainNavbar },
+      props: {
+        header: { colorOnScroll: 400 }
+      }
+    },
   ],
   scrollBehavior: to => {
     if (to.hash) {

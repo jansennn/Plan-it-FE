@@ -39,6 +39,15 @@
           <p>Login</p>
         </a>
       </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          href="#/register"
+        >
+          <i class="now-ui-icons users_circle-08"></i>
+          <p>Register</p>
+        </a>
+      </li>
     </template>
   </navbar>
 </template>
