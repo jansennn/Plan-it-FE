@@ -12,39 +12,39 @@
               <img v-lazy="'img/logo-home.png'" alt="" />
             </div>
 
-            <fg-input
-              class="no-border input-lg"
-              addon-left-icon="now-ui-icons users_circle-08"
-              placeholder="First Name..."
-            >
-            </fg-input>
+            <form @submit.prevent="submit">
+              <fg-input
+                class="no-border input-lg"
+                addon-left-icon="now-ui-icons ui-1_email-85"
+                placeholder="Email..."
+                v-model="form.email"
+              >
+              </fg-input>
 
-            <fg-input
-              class="no-border input-lg"
-              addon-left-icon="now-ui-icons text_caps-small"
-              placeholder="Last Name..."
-            >
-            </fg-input>
+              <fg-input
+                class="no-border input-lg"
+                addon-left-icon="now-ui-icons text_caps-small"
+                placeholder="Password..."
+                v-model="form.password"
+              >
+              </fg-input>
 
-            <template slot="raw-content">
               <div class="card-footer text-center">
-                <a
-                  href="#pablo"
+                <button
+                  type="submit"
                   class="btn btn-info btn-round btn-lg btn-block"
-                  >Get Started</a
                 >
+                  Login
+                </button>
               </div>
               <div class="pull-left">
                 <h6>
-                  <a href="#pablo" class="link footer-link">Create Account</a>
+                  <a href="#/register" class="link footer-link"
+                    >don't have an account ?</a
+                  >
                 </h6>
               </div>
-              <div class="pull-right">
-                <h6>
-                  <a href="#pablo" class="link footer-link">Need Help?</a>
-                </h6>
-              </div>
-            </template>
+            </form>
           </card>
         </div>
       </div>
@@ -53,17 +53,35 @@
   </div>
 </template>
 <script>
-import { Card, Button, FormGroupInput } from '@/components';
-import MainFooter from '@/layout/MainFooter';
+import { Card, Button, FormGroupInput } from "@/components";
+import MainFooter from "@/layout/MainFooter";
+import axios from 'axios';
+
 export default {
-  name: 'login-page',
-  bodyClass: 'login-page',
+  name: "login-page",
+  bodyClass: "login-page",
   components: {
     Card,
     MainFooter,
     [Button.name]: Button,
-    [FormGroupInput.name]: FormGroupInput
-  }
+    [FormGroupInput.name]: FormGroupInput,
+  },
+  data () {
+    return {
+      form: {
+        email : '',
+        password: ''
+      }
+    }
+  },
+  methods: {
+    async submit() {
+      console.log(this.form.email);
+      let response =  axios.post('localhost:8000/api/auth/signin', this.form)
+
+      console.log(response.body);
+    },
+  },
 };
 </script>
 <style></style>
