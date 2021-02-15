@@ -8,6 +8,7 @@ import Home from './pages/Home.vue';
 import Planner from './pages/Planner.vue';
 import MainNavbar from './layout/MainNavbar.vue';
 import MainFooter from './layout/MainFooter.vue';
+import store from '@/store';
 
 Vue.use(Router);
 
@@ -56,6 +57,15 @@ export default new Router({
       props: {
         header: { colorOnScroll: 400 },
         footer: { backgroundColor: 'black' }
+      },
+      beforeEnter: (to, from, next) => {
+        if(!store.getters['auth/authenticated']) {
+          return next({
+            name: 'login'
+          })
+        }
+
+        next()
       }
     },
     {

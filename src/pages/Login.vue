@@ -56,6 +56,7 @@
 import { Card, Button, FormGroupInput } from "@/components";
 import MainFooter from "@/layout/MainFooter";
 import axios from 'axios';
+import { mapActions} from 'vuex';
 
 export default {
   name: "login-page",
@@ -75,11 +76,17 @@ export default {
     }
   },
   methods: {
-    async submit() {
-      console.log(this.form.email);
-      let response =  axios.post('localhost:8000/api/auth/signin', this.form)
-
-      console.log(response.body);
+    ...mapActions({
+      signIn: 'auth/signIn'
+    }),
+    submit() {
+      this.signIn(this.form).then(() => {
+        this.$router.replace({
+          name: 'home'
+        })
+      }).catch(() => {
+        console.log("failed");
+      })
     },
   },
 };

@@ -32,6 +32,8 @@
 </template>
 <script>
 import NavbarToggleButton from './NavbarToggleButton';
+
+
 let resizeTimeout;
 function resizeThrottler(actualResizeHandler) {
   // ignore resize events as long as an actualResizeHandler execution is in the queue
