@@ -9,6 +9,7 @@ import Planner from './pages/Planner.vue';
 import MainNavbar from './layout/MainNavbar.vue';
 import MainFooter from './layout/MainFooter.vue';
 import store from '@/store';
+import Destinations from "@/pages/Destinations.vue";
 
 Vue.use(Router);
 
@@ -76,6 +77,15 @@ export default new Router({
         header: { colorOnScroll: 400 }
       }
     },
+    {
+      path: '/destinations',
+      name: 'destinations',
+      components: { default: Destinations, header: MainNavbar, footer: MainFooter },
+      props: {
+        header: { colorOnScroll: 400 },
+        footer: { backgroundColor: 'black' }
+      }
+    }
   ],
   scrollBehavior: to => {
     if (to.hash) {

@@ -26,7 +26,7 @@
       <li class="nav-item">
         <a
           class="nav-link"
-          href="#/login"
+          href="#/destinations"
         >
           <i class="now-ui-icons location_pin"></i>
           <p>Destinations</p>
@@ -66,7 +66,7 @@
       <li class="nav-item">
         <a
           class="nav-link"
-          href="#/login"
+          href="#/destinations"
         >
           <i class="now-ui-icons location_pin"></i>
           <p>Destinations</p>
