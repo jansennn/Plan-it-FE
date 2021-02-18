@@ -72,22 +72,15 @@
           <p>Destinations</p>
         </a>
       </li>
-      <li class="nav-item">
-        <a
-          class="nav-link"
-          href="#"
-          @click.prevent="signOut"
-        >
-          <i class="now-ui-icons users_circle-08"></i>
-          <p>{{user.name}}</p>
-        </a>
-      </li>
+      <drop-down tag="div" :title="user.firstname" icon="now-ui-icons users_circle-08">
+        <a class="dropdown-item" @click.prevent="signOut"><i class="now-ui-icons media-1_button-power"></i> Sign Out</a>
+      </drop-down>
     </template>
   </navbar>
 </template>
 
 <script>
-import { Navbar } from '@/components';
+import { DropDown, Navbar} from '@/components';
 import { Popover } from 'element-ui';
 import { mapGetters, mapActions } from 'vuex';
 
@@ -98,6 +91,7 @@ export default {
     colorOnScroll: Number
   },
   components: {
+    DropDown,
     Navbar,
     [Popover.name]: Popover
   },

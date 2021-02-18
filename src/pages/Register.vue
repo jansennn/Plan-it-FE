@@ -12,48 +12,53 @@
               <img v-lazy="'img/logo-home.png'" alt="" />
             </div>
 
-            <fg-input
-              class="no-border input-lg"
-              addon-left-icon="now-ui-icons users_circle-08"
-              placeholder="First Name..."
-            >
-            </fg-input>
+            <form @submit.prevent="submit">
+              <fg-input
+                class="no-border input-lg"
+                addon-left-icon="now-ui-icons users_circle-08"
+                placeholder="First Name..."
+                v-model="form.firstname"
+              >
+              </fg-input>
 
-            <fg-input
-              class="no-border input-lg"
-              addon-left-icon="now-ui-icons text_caps-small"
-              placeholder="Last Name..."
-            >
-            </fg-input>
+              <fg-input
+                class="no-border input-lg"
+                addon-left-icon="now-ui-icons text_caps-small"
+                placeholder="Last Name..."
+                v-model="form.lastname"
+              >
+              </fg-input>
 
-            <fg-input
-              class="no-border input-lg"
-              addon-left-icon="now-ui-icons ui-1_email-85"
-              placeholder="Email ..."
-            >
-            </fg-input>
+              <fg-input
+                class="no-border input-lg"
+                addon-left-icon="now-ui-icons ui-1_email-85"
+                placeholder="Email ..."
+                v-model="form.email"
+              >
+              </fg-input>
 
-            <fg-input
-              class="no-border input-lg"
-              addon-left-icon="now-ui-icons objects_key-25"
-              placeholder="Password..."
-            >
-            </fg-input>
+              <fg-input
+                class="no-border input-lg"
+                addon-left-icon="now-ui-icons objects_key-25"
+                placeholder="Password..."
+                type="password"
+                v-model="form.password"
+              >
+              </fg-input>
 
-            <template slot="raw-content">
               <div class="card-footer text-center">
-                <a
-                  href="#pablo"
-                  class="btn btn-info btn-round btn-lg btn-block"
-                  >Register</a
-                >
+                <button type="submit" class="btn btn-info btn-round btn-lg btn-block">
+                  Register
+                </button>
               </div>
               <div class="pull-left">
                 <h6>
-                  <a href="/#/login" class="link footer-link">Have an Account ?</a>
+                  <a href="/#/login" class="link footer-link"
+                    >Have an Account ?</a
+                  >
                 </h6>
               </div>
-            </template>
+            </form>
           </card>
         </div>
       </div>
@@ -62,17 +67,46 @@
   </div>
 </template>
 <script>
-import { Card, Button, FormGroupInput } from '@/components';
-import MainFooter from '@/layout/MainFooter';
+import { Card, Button, FormGroupInput } from "@/components";
+import MainFooter from "@/layout/MainFooter";
+import { mapActions } from "vuex";
+
 export default {
-  name: 'register-page',
-  bodyClass: 'register-page',
+  name: "register-page",
+  bodyClass: "register-page",
   components: {
     Card,
     MainFooter,
     [Button.name]: Button,
-    [FormGroupInput.name]: FormGroupInput
-  }
+    [FormGroupInput.name]: FormGroupInput,
+  },
+  data () {
+    return {
+      form: {
+        firstname : '',
+        lastname : '',
+        email : '',
+        password: '',
+        role: 1
+      }
+    }
+  },
+  methods: {
+    ...mapActions({
+      register: "auth/register",
+    }),
+    submit() {
+      this.register(this.form)
+        .then(() => {
+          this.$router.replace({
+            name: "login",
+          });
+        })
+        .catch(() => {
+          console.log("failed");
+        });
+    },
+  },
 };
 </script>
 <style>

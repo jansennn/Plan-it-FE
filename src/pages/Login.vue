@@ -25,6 +25,7 @@
                 class="no-border input-lg"
                 addon-left-icon="now-ui-icons text_caps-small"
                 placeholder="Password..."
+                type="password"
                 v-model="form.password"
               >
               </fg-input>
@@ -55,7 +56,6 @@
 <script>
 import { Card, Button, FormGroupInput } from "@/components";
 import MainFooter from "@/layout/MainFooter";
-import axios from 'axios';
 import { mapActions} from 'vuex';
 
 export default {

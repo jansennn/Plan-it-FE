@@ -48,7 +48,14 @@ export default {
         commit('SET_TOKEN', null)
         commit('SET_USER', null)
       })
-    }
+    },
+    
+    async register ({dispatch}, credentials) {
+      let response = await axios.post('auth/register', credentials)
+
+      console.log(response.data)
+    },
+
   },
   mutations: {
     SET_TOKEN(state, token){
