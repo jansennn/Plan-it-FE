@@ -73,6 +73,7 @@
         </a>
       </li>
       <drop-down tag="div" :title="user.firstname" icon="now-ui-icons users_circle-08">
+        <a class="dropdown-item" href="#/historyTravel"><i class="fa fa-map-marker"></i> My Route Travel</a>
         <a class="dropdown-item" @click.prevent="signOut"><i class="now-ui-icons media-1_button-power"></i> Sign Out</a>
       </drop-down>
     </template>

@@ -23,11 +23,6 @@
     
     <planner-benefit></planner-benefit>
 
-
-
-    <!-- <signup-form></signup-form>
-    <examples-section></examples-section>
-    <download-section></download-section> -->
   </div>
 </template>
 <script>
