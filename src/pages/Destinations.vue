@@ -53,7 +53,7 @@
                   <h6 class="card-category">{{ destination.kategori }}</h6>
                   <h3 class="card-title">{{ destination.judul }}</h3>
                   <p class="card-text">{{ destination.durasi }}<br/>{{ destination.kabupaten }}</p>
-                  <router-link class="btn btn-primary" to="/">Go somewhere</router-link>
+                  <router-link class="btn btn-primary" to="/">Lihat Detail</router-link>
                 </div>
               </Card>
             </div>
