@@ -43,7 +43,7 @@ export default {
       }
     },
 
-    signOut ({ commit }) {
+    async signOut ({ commit }) {
       return axios.post('auth/signout').then(() => {
         commit('SET_TOKEN', null)
         commit('SET_USER', null)
@@ -55,6 +55,12 @@ export default {
 
       console.log(response.data)
     },
+
+    async me({dispatch}) {
+      let response = await axios.get('auth/me')
+
+      return response.data.role
+    }
 
   },
   mutations: {

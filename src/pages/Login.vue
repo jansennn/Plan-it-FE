@@ -72,18 +72,31 @@ export default {
       form: {
         email : '',
         password: ''
-      }
+      },
+      temp : ''
     }
   },
   methods: {
     ...mapActions({
-      signIn: 'auth/signIn'
+      signIn: 'auth/signIn',
+      me: 'auth/me'
     }),
     submit() {
       this.signIn(this.form).then(() => {
-        this.$router.replace({
-          name: 'home'
-        })
+        // this.$router.replace({
+        //   name: 'home'
+        // })
+        this.me().then((response) => {
+          if(response == 1){
+            this.$router.replace({
+              name: 'home'
+            })
+          } else if(response == 2) {
+            this.$router.replace({
+              name: 'planner'
+            })
+          }
+        });
       }).catch(() => {
         console.log("failed");
       })
