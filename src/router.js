@@ -12,6 +12,8 @@ import store from '@/store';
 import Destinations from "@/pages/Destinations.vue";
 import HistoryTravel from "@/pages/HistoryTravel.vue";
 
+// for admin page
+import Dashboard from "@/pages/Admin/Dashboard.vue";
 Vue.use(Router);
 
 export default new Router({
@@ -94,6 +96,15 @@ export default new Router({
       props: {
         header: { colorOnScroll: 400 },
         footer: { backgroundColor: 'black' }
+      }
+    },
+    {
+      path: '/dashboard',
+      name: 'dashboard',
+      component: Dashboard,
+      props: {
+        header: { colorOnScroll4: 400},
+        footer: { backgroundColor: 'black'}
       }
     }
   ],
