@@ -93,7 +93,7 @@ export default {
             })
           } else if(response == 2) {
             this.$router.replace({
-              name: 'planner'
+              name: 'dashboard'
             })
           }
         });
