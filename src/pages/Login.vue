@@ -56,7 +56,7 @@
 <script>
 import { Card, Button, FormGroupInput } from "@/components";
 import MainFooter from "@/layout/MainFooter";
-import { mapActions} from 'vuex';
+import { mapActions } from "vuex";
 
 export default {
   name: "login-page",
@@ -67,39 +67,53 @@ export default {
     [Button.name]: Button,
     [FormGroupInput.name]: FormGroupInput,
   },
-  data () {
+  data() {
     return {
       form: {
-        email : '',
-        password: ''
+        email: "",
+        password: "",
       },
-      temp : ''
-    }
+      temp: "",
+    };
   },
   methods: {
     ...mapActions({
-      signIn: 'auth/signIn',
-      me: 'auth/me'
+      signIn: "auth/signIn",
+      me: "auth/me",
     }),
     submit() {
-      this.signIn(this.form).then(() => {
-        // this.$router.replace({
-        //   name: 'home'
-        // })
-        this.me().then((response) => {
-          if(response == 1){
-            this.$router.replace({
-              name: 'home'
-            })
-          } else if(response == 2) {
-            this.$router.replace({
-              name: 'dashboard'
-            })
-          }
+      this.signIn(this.form)
+        .then(() => {
+          // this.$router.replace({
+          //   name: 'home'
+          // })
+          this.me().then((response) => {
+            if (response == 1) {
+              this.$router.replace({
+                name: "home",
+              });
+            } else if (response == 2) {
+              this.$router.replace({
+                name: "dashboard",
+              });
+            }
+            this.$toast.success("Success Login", {
+              type: "success",
+              position: "top-right",
+              duration: 3000,
+              dismissible: true,
+            });
+          });
+        })
+        .catch(() => {
+          console.log("failed");
+          this.$toast.error("Login Failed", {
+            type: "error",
+            position: "top-right",
+            duration: 3000,
+            dismissible: true,
+          });
         });
-      }).catch(() => {
-        console.log("failed");
-      })
     },
   },
 };
