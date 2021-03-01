@@ -1,22 +1,9 @@
 <template>
-  <div class="wrapper">
-    <h1>Hahaha</h1>
-    <side-bar></side-bar>
-  </div>
+ <div></div>
 </template>
 
 <script>
-
-import SideBar from "@/layout/Admin/SideBar.vue";
-
-export default {
-  name: 'dashboard',
-  components: {
-    SideBar
+  export default {
+    //
   }
-}
 </script>
-
-<style>
-  
-</style>
