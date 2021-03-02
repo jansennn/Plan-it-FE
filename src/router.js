@@ -14,6 +14,8 @@ import HistoryTravel from "@/pages/HistoryTravel.vue";
 
 // for admin page
 import Dashboard from "@/pages/Admin/Dashboard.vue";
+import IndexDestinasi from "@/pages/Admin/IndexDestinasi.vue";
+import AddDestinasi from "@/pages/Admin/AddDestinasi.vue";
 Vue.use(Router);
 
 export default new Router({
@@ -102,6 +104,24 @@ export default new Router({
       path: '/dashboard',
       name: 'dashboard',
       component: Dashboard,
+      props: {
+        header: { colorOnScroll4: 400},
+        footer: { backgroundColor: 'black'}
+      }
+    },
+    {
+      path: '/indexDestinasi',
+      name: 'indexDestinasi',
+      component: IndexDestinasi,
+      props: {
+        header: { colorOnScroll4: 400},
+        footer: { backgroundColor: 'black'}
+      }
+    },
+    {
+      path: '/addDestinasi',
+      name: 'addDestinasi',
+      component: AddDestinasi,
       props: {
         header: { colorOnScroll4: 400},
         footer: { backgroundColor: 'black'}

@@ -1,7 +1,7 @@
 <template>
   <div class="d-flex" id="wrapper">
     <!-- Sidebar -->
-      <side-bar></side-bar>
+    <side-bar></side-bar>
     <!-- /#sidebar-wrapper -->
 
     <!-- Page Content -->
@@ -9,7 +9,17 @@
       <navbar></navbar>
 
       <div class="container-fluid">
-        <h1 class="mt-4">Welcome Admin</h1>
+        <h1 class="mt-4">Mengelola Destinasi</h1>
+        <a href="#/addDestinasi"><b-button pill variant="info"><i class="fa fa-plus"></i> Add Destinasi</b-button></a>
+        <div class="mt-4">
+          <b-table striped hover :items="destinasis" :fields="fields" :per-page="perPage" :current-page="currentPage"></b-table>
+          <b-pagination
+            v-model="currentPage"
+            :total-rows="rows"
+            :per-page="perPage"
+            aria-controls="my-table"
+          ></b-pagination>
+        </div>
         <!-- <p>
           The starting state of the menu will appear collapsed on smaller
           screens, and will appear non-collapsed on larger screens. When toggled
@@ -28,13 +38,39 @@
 </template>
 
 <script>
-import Navbar from '../../layout/Admin/Navbar.vue';
-import SideBar from '../../layout/Admin/SideBar.vue';
+import Navbar from "../../layout/Admin/Navbar.vue";
+import SideBar from "../../layout/Admin/SideBar.vue";
+import axios from "axios";
 
 export default {
   components: { SideBar, Navbar },
-  data: () => ({}),
-  mounted() {},
+  data() {
+    return {
+      perPage: 10,
+      currentPage: 1,
+      fields: [{ key: 'name', label: 'Nama Destinasi'}, 'address', 'rating', { key: 'lat', label: 'Latitude'}, { key: 'long', label: 'Longitude'}, 'image', 'opening_hours', 'closed_hours'],
+      destinasis: [],
+    };
+  },
+  methods: {
+    setDestinasi(data) {
+      this.destinasis = data;
+      console.log(data);
+    },
+  },
+  mounted() {
+    axios
+      .get("admin/destinasis")
+      .then((response) => this.setDestinasi(response.data))
+      .catch(function (error) {
+        console.log("Gagal : ", error);
+      });
+  },
+  computed: {
+    rows() {
+      return this.destinasis.length
+    }
+  }
 };
 </script>
 

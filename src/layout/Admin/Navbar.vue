@@ -1,6 +1,8 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-    <button class="btn btn-primary" id="menu-toggle"><i class="fas fa-bars"></i></button>
+    <button class="btn btn-primary" id="menu-toggle">
+      <i class="fas fa-bars"></i>
+    </button>
 
     <button
       class="navbar-toggler"
@@ -17,8 +19,9 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
         <li class="nav-item active">
-          <a class="nav-link" href="#"
-            >Sign Out <span class="sr-only">(current)</span></a
+          <a class="nav-link" @click.prevent="signOut"
+            ><i class="fa fa-sign-out" style="color: black"></i> Sign Out
+            <span class="sr-only">(current)</span></a
           >
         </li>
       </ul>
@@ -27,7 +30,36 @@
 </template>
 
 <script>
-export default {};
+import { mapGetters, mapActions } from "vuex";
+
+export default {
+  name: "navbar",
+  computed: {
+    ...mapGetters({
+      authenticated: "auth/authenticated",
+      user: "auth/user",
+    }),
+  },
+  methods: {
+    ...mapActions({
+      signOutAction: "auth/signOut",
+    }),
+
+    signOut() {
+      this.signOutAction().then(() => {
+        this.$router.replace({
+          name: "home",
+        });
+        this.$toast.success("Success Logout", {
+          type: "success",
+          position: "top-right",
+          duration: 3000,
+          dismissible: true,
+        });
+      });
+    },
+  },
+};
 </script>
 
 <style>
