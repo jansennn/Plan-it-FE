@@ -18,7 +18,7 @@
           navMenuClasses
         ]"
         v-if="$slots['navbar-menu'] || $scopedSlots['navbar-menu']"
-        data-color="blue"
+        data-color="orange"
         id="navigation"
       >
         <slot name="before-menu"></slot>
@@ -32,8 +32,6 @@
 </template>
 <script>
 import NavbarToggleButton from './NavbarToggleButton';
-
-
 let resizeTimeout;
 function resizeThrottler(actualResizeHandler) {
   // ignore resize events as long as an actualResizeHandler execution is in the queue

@@ -9,6 +9,11 @@ import store from './store'
 // Vue Toast Notification
 import VueToast from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
+// Bootstrap Vue
+import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
+
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 require('@/store/subscriber')
 
@@ -27,5 +32,6 @@ store.dispatch('auth/attempt', localStorage.getItem('token')).then(() => {
 Vue.use(NowUiKit);
 // Vue.use(Vuetify);
 Vue.use(VueToast);
-
+Vue.use(BootstrapVue)
+Vue.use(BootstrapVueIcons)
 

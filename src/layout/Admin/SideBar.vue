@@ -1,8 +1,8 @@
 <template>
   <div class="bg-light border-right" id="sidebar-wrapper">
-    <div class="sidebar-heading">Admin</div>
+    <div class="sidebar-heading text-center"><i class="fas fa-user"></i> Admin</div>
     <div class="list-group list-group-flush">
-      <a href="#" class="list-group-item list-group-item-action bg-light"
+      <a href="#/indexDestinasi" class="list-group-item list-group-item-action bg-light"
         >Management Destinasi</a
       >
       <a href="#" class="list-group-item list-group-item-action bg-light"
