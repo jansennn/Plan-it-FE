@@ -33,7 +33,7 @@
 import { mapGetters, mapActions } from "vuex";
 
 export default {
-  name: "navbar",
+  name: "navbar_admin",
   computed: {
     ...mapGetters({
       authenticated: "auth/authenticated",

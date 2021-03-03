@@ -112,12 +112,12 @@ export default {
         this.$router.replace({
           name: 'home'
         })
-        // this.$toast.success("Success Logout", {
-        //   type: "success",
-        //   position: "top-right",
-        //   duration: 3000,
-        //   dismissible: true,
-        // });
+        this.$toast.success("Success Logout", {
+          type: "success",
+          position: "top-right",
+          duration: 3000,
+          dismissible: true,
+        });
       })
     }
   }

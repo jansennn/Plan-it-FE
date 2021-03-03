@@ -6,7 +6,7 @@
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
-      <navbar></navbar>
+      <navbar-admin></navbar-admin>
 
       <div class="container-fluid">
         <h1 class="mt-4">Mengelola Destinasi</h1>
@@ -38,12 +38,13 @@
 </template>
 
 <script>
-import Navbar from "../../layout/Admin/Navbar.vue";
+
 import SideBar from "../../layout/Admin/SideBar.vue";
 import axios from "axios";
+import NavbarAdmin from '../../layout/Admin/NavbarAdmin.vue';
 
 export default {
-  components: { SideBar, Navbar },
+  components: { SideBar, NavbarAdmin },
   data() {
     return {
       perPage: 10,
@@ -55,7 +56,6 @@ export default {
   methods: {
     setDestinasi(data) {
       this.destinasis = data;
-      console.log(data);
     },
   },
   mounted() {

@@ -6,7 +6,7 @@
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
-      <navbar></navbar>
+      <navbar-admin></navbar-admin>
 
       <div class="container-fluid">
         <h1 class="mt-4">Welcome Admin</h1>
@@ -28,11 +28,11 @@
 </template>
 
 <script>
-import Navbar from '../../layout/Admin/Navbar.vue';
+import NavbarAdmin from '../../layout/Admin/NavbarAdmin.vue';
 import SideBar from '../../layout/Admin/SideBar.vue';
 
 export default {
-  components: { SideBar, Navbar },
+  components: { SideBar, NavbarAdmin},
   data: () => ({}),
   mounted() {},
 };
