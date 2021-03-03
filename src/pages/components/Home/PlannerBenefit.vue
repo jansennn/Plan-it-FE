@@ -28,7 +28,7 @@
           </ul>
         </div>
         <div class="col-md-4">
-           <img src="ilustrator/travelers.png" alt="" class="float-right image-traveler"> 
+          <img src="ilustrator/travelers.png" alt="" class="float-right image-traveler">
         </div>
       </div>
       <div class="row">

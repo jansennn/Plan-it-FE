@@ -2,8 +2,8 @@
   <div>
     <div class="page-header clear-filter" filter-color="blue">
       <parallax
-        class="page-header-image"
-        style="background-image:url('img/header-home.jpg');filter:brightness(50%)"
+          class="page-header-image"
+          style="background-image:url('img/header-home.jpg');filter:brightness(50%)"
       >
       </parallax>
       <div class="container">
@@ -19,7 +19,7 @@
         </h6>
       </div>
     </div>
-    
+
     <planner-benefit></planner-benefit>
 
   </div>

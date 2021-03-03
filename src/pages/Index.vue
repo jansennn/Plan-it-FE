@@ -2,8 +2,8 @@
   <div>
     <div class="page-header clear-filter" filter-color="orange">
       <parallax
-        class="page-header-image"
-        style="background-image:url('img/header.jpg')"
+          class="page-header-image"
+          style="background-image:url('img/header.jpg')"
       >
       </parallax>
       <div class="container">
@@ -19,8 +19,8 @@
           >. Coded by
           <a href="https://www.creative-tim.com" target="_blank">
             <img
-              src="img/creative-tim-white-slim2.png"
-              class="creative-tim-logo"
+                src="img/creative-tim-white-slim2.png"
+                class="creative-tim-logo"
             /> </a
           >.
         </h6>
