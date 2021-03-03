@@ -1,7 +1,7 @@
 <template>
   <div class="d-flex" id="wrapper">
     <!-- Sidebar -->
-      <side-bar></side-bar>
+    <side-bar></side-bar>
     <!-- /#sidebar-wrapper -->
 
     <!-- Page Content -->

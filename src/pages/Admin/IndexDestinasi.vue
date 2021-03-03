@@ -14,10 +14,10 @@
         <div class="mt-4">
           <b-table striped hover :items="destinasis" :fields="fields" :per-page="perPage" :current-page="currentPage"></b-table>
           <b-pagination
-            v-model="currentPage"
-            :total-rows="rows"
-            :per-page="perPage"
-            aria-controls="my-table"
+              v-model="currentPage"
+              :total-rows="rows"
+              :per-page="perPage"
+              aria-controls="my-table"
           ></b-pagination>
         </div>
         <!-- <p>
@@ -60,11 +60,11 @@ export default {
   },
   mounted() {
     axios
-      .get("admin/destinasis")
-      .then((response) => this.setDestinasi(response.data))
-      .catch(function (error) {
-        console.log("Gagal : ", error);
-      });
+        .get("admin/destinasis")
+        .then((response) => this.setDestinasi(response.data))
+        .catch(function (error) {
+          console.log("Gagal : ", error);
+        });
   },
   computed: {
     rows() {

@@ -1,12 +1,12 @@
 <template>
   <div class="planner">
     <div
-      class="page-header clear-filter"
-      style="min-height: 400px; max-height: 600px"
+        class="page-header clear-filter"
+        style="min-height: 400px; max-height: 600px"
     >
       <parallax
-        class="page-header-image"
-        style="
+          class="page-header-image"
+          style="
           background-image: url('img/header-home.jpg');
           filter: brightness(50%);
           height: 400px;
@@ -25,7 +25,7 @@
           <div class="col">
             <h2 class="font-weight-bold">Make Your Trip</h2>
             <p class="float-left">In Your Apps <br>A complete day by day itinerary based on your preferences <br>
-            Refine your trip. We'll find the best routes and schedules <br> Everything in one place.Everyone on the same page.</p>
+              Refine your trip. We'll find the best routes and schedules <br> Everything in one place.Everyone on the same page.</p>
           </div>
           <div class="col">
             <img src="ilustrator/destinations_2.png" alt="" class="image-destination">

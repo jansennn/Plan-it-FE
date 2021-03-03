@@ -3,13 +3,13 @@
     <div class="sidebar-heading text-center"><i class="fas fa-user"></i> Admin</div>
     <div class="list-group list-group-flush">
       <a href="#/indexDestinasi" class="list-group-item list-group-item-action bg-light"
-        >Management Destinasi</a
+      >Management Destinasi</a
       >
       <a href="#" class="list-group-item list-group-item-action bg-light"
-        >Management Crossover rate</a
+      >Management Crossover rate</a
       >
       <a href="#" class="list-group-item list-group-item-action bg-light"
-        >Management Mutation rate</a
+      >Management Mutation rate</a
       >
     </div>
   </div>

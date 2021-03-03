@@ -94,18 +94,18 @@ export default {
   },
   mounted() {
     axios
-      .get("admin/kabupatens")
-      .then((response) => this.setKabupaten(response.data))
-      .catch(function (error) {
-        console.log("Gagal : ", error);
-      });
+        .get("admin/kabupatens")
+        .then((response) => this.setKabupaten(response.data))
+        .catch(function (error) {
+          console.log("Gagal : ", error);
+        });
 
     axios
-      .get("admin/categoryWisatas")
-      .then((response) => this.setCategoryWisata(response.data))
-      .catch(function (error) {
-        console.log("Gagal : ", error);
-      });
+        .get("admin/categoryWisatas")
+        .then((response) => this.setCategoryWisata(response.data))
+        .catch(function (error) {
+          console.log("Gagal : ", error);
+        });
   },
 };
 </script>

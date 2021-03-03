@@ -1,8 +1,8 @@
 <template>
   <div class="page-header clear-filter" filter-color="blue">
     <div
-      class="page-header-image"
-      style="background-image: url('img/login.jpg')"
+        class="page-header-image"
+        style="background-image: url('img/login.jpg')"
     ></div>
     <div class="content">
       <div class="container">
@@ -14,35 +14,35 @@
 
             <form @submit.prevent="submit">
               <fg-input
-                class="no-border input-lg"
-                addon-left-icon="now-ui-icons users_circle-08"
-                placeholder="First Name..."
-                v-model="form.firstname"
+                  class="no-border input-lg"
+                  addon-left-icon="now-ui-icons users_circle-08"
+                  placeholder="First Name..."
+                  v-model="form.firstname"
               >
               </fg-input>
 
               <fg-input
-                class="no-border input-lg"
-                addon-left-icon="now-ui-icons text_caps-small"
-                placeholder="Last Name..."
-                v-model="form.lastname"
+                  class="no-border input-lg"
+                  addon-left-icon="now-ui-icons text_caps-small"
+                  placeholder="Last Name..."
+                  v-model="form.lastname"
               >
               </fg-input>
 
               <fg-input
-                class="no-border input-lg"
-                addon-left-icon="now-ui-icons ui-1_email-85"
-                placeholder="Email ..."
-                v-model="form.email"
+                  class="no-border input-lg"
+                  addon-left-icon="now-ui-icons ui-1_email-85"
+                  placeholder="Email ..."
+                  v-model="form.email"
               >
               </fg-input>
 
               <fg-input
-                class="no-border input-lg"
-                addon-left-icon="now-ui-icons objects_key-25"
-                placeholder="Password..."
-                type="password"
-                v-model="form.password"
+                  class="no-border input-lg"
+                  addon-left-icon="now-ui-icons objects_key-25"
+                  placeholder="Password..."
+                  type="password"
+                  v-model="form.password"
               >
               </fg-input>
 
@@ -54,7 +54,7 @@
               <div class="pull-left">
                 <h6>
                   <a href="/#/login" class="link footer-link"
-                    >Have an Account ?</a
+                  >Have an Account ?</a
                   >
                 </h6>
               </div>
@@ -97,14 +97,14 @@ export default {
     }),
     submit() {
       this.register(this.form)
-        .then(() => {
-          this.$router.replace({
-            name: "login",
+          .then(() => {
+            this.$router.replace({
+              name: "login",
+            });
+          })
+          .catch(() => {
+            console.log("failed");
           });
-        })
-        .catch(() => {
-          console.log("failed");
-        });
     },
   },
 };

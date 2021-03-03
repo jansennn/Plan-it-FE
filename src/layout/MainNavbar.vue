@@ -1,10 +1,10 @@
 <template>
   <navbar
-    position="fixed"
-    type="info"
-    :transparent="transparent"
-    :color-on-scroll="colorOnScroll"
-    menu-classes="ml-auto"
+      position="fixed"
+      type="info"
+      :transparent="transparent"
+      :color-on-scroll="colorOnScroll"
+      menu-classes="ml-auto"
   >
     <template>
       <router-link v-popover:popover1 class="navbar-brand" to="/">
@@ -16,8 +16,8 @@
     <template slot="navbar-menu" v-if="!authenticated">
       <li class="nav-item">
         <a
-          class="nav-link"
-          href="#/planner"
+            class="nav-link"
+            href="#/planner"
         >
           <i class="now-ui-icons design_bullet-list-67"></i>
           <p>Planner</p>
@@ -25,8 +25,8 @@
       </li>
       <li class="nav-item">
         <a
-          class="nav-link"
-          href="#/destinations"
+            class="nav-link"
+            href="#/destinations"
         >
           <i class="now-ui-icons location_pin"></i>
           <p>Destinations</p>
@@ -34,8 +34,8 @@
       </li>
       <li class="nav-item">
         <a
-          class="nav-link"
-          href="#/login"
+            class="nav-link"
+            href="#/login"
         >
           <i class="now-ui-icons users_circle-08"></i>
           <p>Login</p>
@@ -43,8 +43,8 @@
       </li>
       <li class="nav-item">
         <a
-          class="nav-link"
-          href="#/register"
+            class="nav-link"
+            href="#/register"
         >
           <i class="now-ui-icons users_circle-08"></i>
           <p>Register</p>
@@ -56,8 +56,8 @@
     <template slot="navbar-menu" v-if="authenticated">
       <li class="nav-item">
         <a
-          class="nav-link"
-          href="#/planner"
+            class="nav-link"
+            href="#/planner"
         >
           <i class="now-ui-icons design_bullet-list-67"></i>
           <p>Planner</p>
@@ -65,8 +65,8 @@
       </li>
       <li class="nav-item">
         <a
-          class="nav-link"
-          href="#/destinations"
+            class="nav-link"
+            href="#/destinations"
         >
           <i class="now-ui-icons location_pin"></i>
           <p>Destinations</p>

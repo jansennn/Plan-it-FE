@@ -5,13 +5,13 @@
     </button>
 
     <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
     >
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -20,7 +20,7 @@
       <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
         <li class="nav-item active">
           <a class="nav-link" @click.prevent="signOut"
-            ><i class="fa fa-sign-out" style="color: black"></i> Sign Out
+          ><i class="fa fa-sign-out" style="color: black"></i> Sign Out
             <span class="sr-only">(current)</span></a
           >
         </li>

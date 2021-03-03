@@ -1,12 +1,12 @@
 <template>
   <div class="planner">
     <div
-      class="page-header clear-filter"
-      style="min-height: 400px; max-height: 600px"
+        class="page-header clear-filter"
+        style="min-height: 400px; max-height: 600px"
     >
       <parallax
-        class="page-header-image"
-        style="
+          class="page-header-image"
+          style="
           background-image: url('img/header-home.jpg');
           filter: brightness(50%);
           height: 400px;
@@ -26,10 +26,10 @@
           <div class="col-md-4">
             <card class="rounded" style="width: 20rem">
               <img
-                slot="image"
-                class="card-img-top"
-                :src="'img/bg4.jpg'"
-                alt="Card image cap"
+                  slot="image"
+                  class="card-img-top"
+                  :src="'img/bg4.jpg'"
+                  alt="Card image cap"
               />
               <div>
                 <h4 class="card-title">Card title</h4>
@@ -51,10 +51,10 @@
           <div class="col-md-4">
             <card class="rounded" style="width: 20rem">
               <img
-                slot="image"
-                class="card-img-top"
-                :src="'img/bg4.jpg'"
-                alt="Card image cap"
+                  slot="image"
+                  class="card-img-top"
+                  :src="'img/bg4.jpg'"
+                  alt="Card image cap"
               />
               <div>
                 <h4 class="card-title">Card title</h4>
