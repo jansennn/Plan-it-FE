@@ -11,9 +11,10 @@ import VueToast from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
 // Bootstrap Vue
 import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
-
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+//Google Maps
+import * as VueGoogleMaps from 'vue2-google-maps'
 
 require('@/store/subscriber')
 
@@ -34,4 +35,10 @@ Vue.use(NowUiKit);
 Vue.use(VueToast);
 Vue.use(BootstrapVue)
 Vue.use(BootstrapVueIcons)
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: 'AIzaSyCqk0o7gAPnf-hWOKtlFPjYtvWBKgDo33o',
+    libraries: 'places', 
+  },
+})
 
