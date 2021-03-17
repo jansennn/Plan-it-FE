@@ -96,7 +96,7 @@
                 label="When start travel:"
                 label-for="input-1"
               >
-                <date-picker v-model="value1" type="date" range></date-picker>
+                <date-picker v-model="date" type="date" range  value-type="format" format="YYYY-MM-DD"></date-picker>
               </b-form-group>
             </div>
             <div class="col-sm-6 mt-4">
@@ -173,7 +173,7 @@ export default {
         panorama: false,
         taman_wisata: false,
       },
-      value1: [new Date(2019, 9, 8), new Date(2019, 9, 19)],
+      date: [],
       select_transportation: [
         { value: 'mobil', text: "Mobil" },
         { value: 'sepeda_motor', text: "Sepeda Motor" },
@@ -205,7 +205,8 @@ export default {
       axios.post("user/testInisiasi", {
          category_wisata: this.category_wisata,
          destination_length: this.destination_length,
-         type_transportation: this.type_transportation 
+         type_transportation: this.type_transportation,
+         date: this.date 
       }).then( function(response){
         // this.$toast.success("Success Make Itenerary", {
         //   type: "success",
