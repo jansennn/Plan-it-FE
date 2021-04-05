@@ -11,6 +11,7 @@ import Planner from './pages/Planner.vue';
 import Destinations from "@/pages/Destinations.vue";
 import HistoryTravel from "@/pages/HistoryTravel.vue";
 import Timeline from "@/pages/Timeline.vue";
+import DetailDestination from "@/pages/DetailDestination.vue";
 
 // for admin page
 import Dashboard from "@/pages/Admin/Dashboard.vue";
@@ -84,9 +85,18 @@ export default new Router({
       }
     },
     {
-      path: '/timeline',
+      path: '/timeline/:id',
       name: 'timeline',
       components: { default: Timeline, header: MainNavbar, footer: MainFooter },
+      props: {
+        header: { colorOnScroll: 400 },
+        footer: { backgroundColor: 'black' }
+      }
+    },
+    {
+      path: '/detailDestination/:id',
+      name: 'detailDestination',
+      components: { default: DetailDestination, header: MainNavbar, footer: MainFooter },
       props: {
         header: { colorOnScroll: 400 },
         footer: { backgroundColor: 'black' }

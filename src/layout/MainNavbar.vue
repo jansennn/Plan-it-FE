@@ -57,6 +57,15 @@
       <li class="nav-item">
         <a
             class="nav-link"
+            href="#/"
+        >
+          <i class="now-ui-icons business_bank"></i>
+          <p>Home</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a
+            class="nav-link"
             href="#/planner"
         >
           <i class="now-ui-icons design_bullet-list-67"></i>

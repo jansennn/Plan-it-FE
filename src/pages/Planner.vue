@@ -41,7 +41,12 @@
         </div>
       </div>
     </section>
-
+    <loading
+      :active.sync="isLoading"
+      :can-cancel="true"
+      :on-cancel="onCancel"
+      :is-full-page="fullPage"
+    ></loading>
     <section class="mt-4 mb-4">
       <div class="container mt-4">
         <h2 class="h2-seo text-center">Set Your Preferences</h2>
@@ -57,20 +62,7 @@
                   id="input-1"
                   type="text"
                   placeholder="Enter Name"
-                  required
-                ></b-form-input>
-              </b-form-group>
-            </div>
-            <div class="col-sm-6 mt-4">
-              <b-form-group
-                id="input-group-1"
-                label="Email address:"
-                label-for="input-1"
-              >
-                <b-form-input
-                  id="input-1"
-                  type="number"
-                  placeholder="Enter email"
+                  v-model="name_route_travel"
                   required
                 ></b-form-input>
               </b-form-group>
@@ -96,7 +88,14 @@
                 label="When start travel:"
                 label-for="input-1"
               >
-                <date-picker v-model="date" type="date" range  value-type="format" format="YYYY-MM-DD"></date-picker>
+                <date-picker
+                  v-model="date"
+                  type="date"
+                  range
+                  value-type="format"
+                  format="DD-MM-YYYY"
+                  style="width:100%"
+                ></date-picker>
               </b-form-group>
             </div>
             <div class="col-sm-6 mt-4">
@@ -105,13 +104,39 @@
                 label="Type transportation:"
                 label-for="input-1"
               >
-                <b-form-select v-model="type_transportation" :options="select_transportation" size="sm">
-                 <template #first>
-                    <b-form-select-option :value="null" disabled>-- Please select type transportation -</b-form-select-option>
+                <b-form-select
+                  v-model="type_transportation"
+                  :options="select_transportation"
+                  size="sm"
+                >
+                  <template #first>
+                    <b-form-select-option :value="null" disabled
+                      >-- Please select type transportation
+                      -</b-form-select-option
+                    >
                   </template>
-              </b-form-select>
+                </b-form-select>
               </b-form-group>
-              
+            </div>
+            <div class="col-sm-12 mt-4">
+              <b-form-group
+                id="input-group-1"
+                label="Pick Your Location:"
+                label-for="input-1"
+              >
+                <GmapMap
+                  :center="{ lat: 2.574647937733531, lng: 98.84375603456863 }"
+                  :zoom="9"
+                  map-type-id="roadmap"
+                  style="width: 100%; height: 500px"
+                >
+                  <GmapMarker
+                    :position="{ lat: 2.574647937733531, lng: 98.84375603456863 }"
+                    :clickable="true"
+                    :draggable="true"
+                  />
+                </GmapMap>
+              </b-form-group>              
             </div>
             <div class="col-sm-12 mt-4">
               <p class="category">Select the type of tourist spot</p>
@@ -132,13 +157,17 @@
               <n-checkbox v-model="checkboxes.panorama">Panorama</n-checkbox>
             </div>
             <div class="col-sm-6">
-              <n-checkbox v-model="checkboxes.taman_wisata">Taman Wisata</n-checkbox>
+              <n-checkbox v-model="checkboxes.taman_wisata"
+                >Taman Wisata</n-checkbox
+              >
             </div>
             <div class="col-sm-12 mt-4 mb-4">
               <!-- <n-button type="submit info" round block
                 ><i class="fa fa-paper-plane"></i>&nbsp;&nbsp; Save</n-button
               > -->
-              <b-button block pill variant="info" type="submit"><i class="fa fa-paper-plane"></i>&nbsp;&nbsp; Save</b-button>
+              <b-button block pill variant="info" type="submit"
+                ><i class="fa fa-paper-plane"></i>&nbsp;&nbsp; Save</b-button
+              >
             </div>
           </div>
         </form>
@@ -151,8 +180,13 @@
 import { Parallax } from "@/components";
 import { FormGroupInput, Checkbox, Button } from "@/components";
 import axios from "axios";
-import DatePicker from 'vue2-datepicker';
-import 'vue2-datepicker/index.css';
+import DatePicker from "vue2-datepicker";
+import "vue2-datepicker/index.css";
+import { mapGetters, mapActions } from "vuex";
+// Import component
+import Loading from "vue-loading-overlay";
+// Import stylesheet
+import "vue-loading-overlay/dist/vue-loading.css";
 
 export default {
   name: "planner",
@@ -161,7 +195,14 @@ export default {
     [FormGroupInput.name]: FormGroupInput,
     [Checkbox.name]: Checkbox,
     [Button.name]: Button,
-    DatePicker
+    DatePicker,
+    Loading,
+  },
+  computed: {
+    ...mapGetters({
+      authenticated: "auth/authenticated",
+      user: "auth/user",
+    }),
   },
   data() {
     return {
@@ -175,48 +216,89 @@ export default {
       },
       date: [],
       select_transportation: [
-        { value: 'mobil', text: "Mobil" },
-        { value: 'sepeda_motor', text: "Sepeda Motor" },
+        { value: "mobil", text: "Mobil" },
+        { value: "sepeda_motor", text: "Sepeda Motor" },
       ],
-      type_transportation: '',
+      type_transportation: "",
       category_wisata: [],
       destination_length: null,
+      user_id: 1,
+      name_route_travel: "",
+      isLoading: false,
+      fullPage: true,
     };
   },
   methods: {
-    submit(){
+    submit() {
       this.category_wisata = [];
 
-      if(this.checkboxes.beach == true){
+      if (this.checkboxes.beach == true) {
         this.category_wisata.push(1);
-      }if(this.checkboxes.waterfall == true){
+      }
+      if (this.checkboxes.waterfall == true) {
         this.category_wisata.push(2);
-      }if(this.checkboxes.museum == true){
+      }
+      if (this.checkboxes.museum == true) {
         this.category_wisata.push(3);
-      }if(this.checkboxes.mount == true){
+      }
+      if (this.checkboxes.mount == true) {
         this.category_wisata.push(4);
-      }if(this.checkboxes.panorama == true){
+      }
+      if (this.checkboxes.panorama == true) {
         this.category_wisata.push(5);
-      }if(this.checkboxes.taman_wisata == true){
+      }
+      if (this.checkboxes.taman_wisata == true) {
         this.category_wisata.push(6);
       }
-      
-      //post 
-      axios.post("user/testInisiasi", {
-         category_wisata: this.category_wisata,
-         destination_length: this.destination_length,
-         type_transportation: this.type_transportation,
-         date: this.date 
-      }).then( function(response){
-        // this.$toast.success("Success Make Itenerary", {
-        //   type: "success",
-        //   position: "top-right",
-        //   duration: 3000,
-        //   dismissible: true,
-        // });
-        console.log(response);
-      });
-    }
+      this.showLoader();
+      //post
+      axios
+        .post("user/testInisiasi", {
+          category_wisata: this.category_wisata,
+          destination_length: this.destination_length,
+          type_transportation: this.type_transportation,
+          date: this.date,
+          user_id: this.user_id,
+          name_route_travel: this.name_route_travel,
+        })
+        .then((response) => {
+          console.log(response);
+          this.hideLoader();
+          this.$toast.success("Success Make Itenerary", {
+            type: "success",
+            position: "top-right",
+            duration: 3000,
+            dismissible: true,
+          });
+        })
+        .catch((error) => {
+          this.hideLoader();
+          this.$toast.error("Failed Make Itenerary", {
+            type: "error",
+            position: "top-right",
+            duration: 3000,
+            dismissible: true,
+          });
+        });
+    },
+    doAjax() {
+      this.isLoading = true;
+      // simulate AJAX
+      setTimeout(() => {
+        this.isLoading = false;
+        this.$router.push({ path: '/historyTravel' })
+      }, 5000);
+    },
+    showLoader(){
+      this.isLoading = true;
+    },
+    hideLoader(){
+      this.isLoading = false;
+      this.$router.push({ path: '/historyTravel' })
+    },
+    onCancel() {
+      console.log("User cancelled the loader.");
+    },
   }
 };
 </script>

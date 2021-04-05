@@ -3,7 +3,7 @@
     <div class="page-header page-header-small">
       <parallax
           class="page-header-image"
-          style="background-image: url('img/bg9.jpg')"
+          style="background-image: url('img/bg_destination.jpg')"
       >
       </parallax>
       <div class="content-center">
@@ -12,48 +12,24 @@
         </div>
       </div>
     </div>
+    <div class=" container col col-md-6 mt-4">
+      <fg-input class="col-12"
+                placeholder="Search Destinasi"
+                addon-right-icon="now-ui-icons ui-1_zoom-bold">
+      </fg-input>
+    </div>
     <div class="container">
       <div class="row mt-4 mt-md-5">
-        <div class="col col-md-3">
-          <div class="row justify-content-center">
-            <div class="col-10 col-md">
-              <Dropdown>
-                <n-button slot="title" type="primary"
-                          class="dropdown-toggle"
-                          data-toggle="dropdown"
-                          block round>
-                  Kabupaten
-                </n-button>
-                <h6 class="dropdown-header">Kabupaten</h6>
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </Dropdown>
-              <Dropdown class="mt-4">
-                <n-button slot="title" type="info"
-                          class="dropdown-toggle"
-                          data-toggle="dropdown"
-                          block round>
-                  Kategori
-                </n-button>
-                <h6 class="dropdown-header">Kategori</h6>
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </Dropdown>
-            </div>
-          </div>
-        </div>
-        <div class="col col-md-9">
+        <div class="col col-md-12">
           <div class="row mt-3 mt-md-0 text-center text-md-left">
-            <div class="col-md-6 mt-2" v-for="destination in destinations" :key="destination.id">
-              <Card style="width: 25rem;">
-                <img slot="image" class="card-img-top" :src="'img/bg4.jpg'" alt="Card image cap">
+            <div class="col-md-4 mt-2" v-for="destination in destinations" :key="destination.id">
+              <Card style="width: 20rem;" class="ml-1 mr-1">
+                <img slot="image" class="card-img-top" :src=destination.image alt="Card image cap">
                 <div>
                   <h6 class="card-category">{{ destination.kategori }}</h6>
-                  <h3 class="card-title">{{ destination.judul }}</h3>
+                  <h3 class="card-title">{{ destination.name }}</h3>
                   <p class="card-text">{{ destination.durasi }}<br/>{{ destination.kabupaten }}</p>
-                  <router-link class="btn btn-primary" to="/">Go somewhere</router-link>
+                  <router-link class="btn btn-info" :to="'/detailDestination/'+destination.id"><i class="fa fa-paper-plane-o"></i> Open</router-link>
                 </div>
               </Card>
             </div>
@@ -66,16 +42,14 @@
 
 <script>
 import Card from "@/components/Cards/Card.vue";
+import { FormGroupInput } from '@/components';
 import axios from "axios";
-import Dropdown from "@/components/Dropdown";
-import NButton from "@/components/Button";
 
 export default {
   name: "Destinations",
   components: {
-    NButton,
     Card,
-    Dropdown
+    [FormGroupInput.name]: FormGroupInput,
   },
   data() {
     return {
@@ -88,7 +62,7 @@ export default {
     }
   },
   mounted() {
-    axios.get('http://localhost:3000/destinations')
+    axios.get('user/destinasis')
         .then((response) => {
           this.setDestination(response.data);
           console.log(response)
