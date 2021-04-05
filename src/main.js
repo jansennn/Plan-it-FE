@@ -15,6 +15,11 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 //Google Maps
 import * as VueGoogleMaps from 'vue2-google-maps'
+import Loading from 'vue-loading-overlay';
+// Import stylesheet
+import 'vue-loading-overlay/dist/vue-loading.css';
+// Init plugin
+
 
 require('@/store/subscriber')
 
@@ -41,4 +46,5 @@ Vue.use(VueGoogleMaps, {
     libraries: 'places', 
   },
 })
+Vue.use(Loading);
 

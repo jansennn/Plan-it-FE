@@ -1,5 +1,5 @@
 <template>
-  <div class="planner">
+  <div class="history_travel">
     <div
         class="page-header clear-filter"
         style="min-height: 400px; max-height: 600px"
@@ -21,9 +21,9 @@
 
     <section class="section-upcoming-trip mt-4">
       <div class="container">
-        <h2 class="font-weight-bold">Upcoming Trip (0)</h2>
+        <h2 class="font-weight-bold">Upcoming Trip ({{ upcoming_rute_perjalanan.length }})</h2>
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-4" v-for="item in upcoming_rute_perjalanan" :key="item.id">
             <card class="rounded" style="width: 20rem">
               <img
                   slot="image"
@@ -32,12 +32,12 @@
                   alt="Card image cap"
               />
               <div>
-                <h4 class="card-title">Card title</h4>
+                <h4 class="card-title">{{ item.name }}</h4>
                 <p class="card-text">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
+                  {{ item.tanggal_awal }} - {{ item.tanggal_akhir }}
                 </p>
               </div>
+              <router-link class="btn btn-info" :to="'/timeline/'+item.id">Cek <i class="fa fa-arrow-right"></i></router-link>
             </card>
           </div>
         </div>
@@ -46,9 +46,9 @@
 
     <section class="section-past-trip mt-4">
       <div class="container">
-        <h2 class="font-weight-bold">Past Trip (0)</h2>
+        <h2 class="font-weight-bold">Past Trip ({{ past_rute_perjalanan.length }})</h2>
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-4" v-for="item in past_rute_perjalanan" :key="item.id">
             <card class="rounded" style="width: 20rem">
               <img
                   slot="image"
@@ -57,12 +57,12 @@
                   alt="Card image cap"
               />
               <div>
-                <h4 class="card-title">Card title</h4>
+                <h4 class="card-title">{{ item.name }}</h4>
                 <p class="card-text">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
+                  {{ item.tanggal_awal }} - {{ item.tanggal_akhir }}
                 </p>
               </div>
+              <router-link class="btn btn-info" :to="'/timeline/'+item.id">Cek <i class="fa fa-arrow-right"></i></router-link>
             </card>
           </div>
         </div>
@@ -75,6 +75,8 @@
 import { Parallax } from "@/components";
 import { FormGroupInput, Checkbox, Button } from "@/components";
 import Card from "@/components/Cards/Card.vue";
+import axios from "axios";
+
 export default {
   name: "planner",
   components: {
@@ -92,8 +94,32 @@ export default {
         disabledUnchecked: false,
         disabledChecked: true,
       },
+      upcoming_rute_perjalanan: [],
+      past_rute_perjalanan: []
     };
   },
+  methods: {
+    setUpcomingRutePerjalanan($data){
+      this.upcoming_rute_perjalanan = $data;
+    },
+    setPastRutePerjalanan($data){
+      this.past_rute_perjalanan = $data;
+    }
+  },
+  mounted(){
+    axios.get('user/rute_perjalanan_upcoming/'+1)
+      .then((response) => {
+        this.setUpcomingRutePerjalanan(response.data);
+          console.log(response)
+      })
+      .catch((error) => console.log(error));
+    
+    axios.get('user/rute_perjalanan_past/'+1)
+      .then((response) => {
+        this.setPastRutePerjalanan(response.data);
+      })
+      .catch((error) =>console.log(error))
+  }
 };
 </script>
 
