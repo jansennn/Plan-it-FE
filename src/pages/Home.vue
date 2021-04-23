@@ -20,6 +20,7 @@
       </div>
     </div>
 
+    <TrendingRutePerjalanan :trending="trending"/>
     <planner-benefit></planner-benefit>
 
   </div>
@@ -27,13 +28,36 @@
 <script>
 import { Parallax } from '@/components';
 import PlannerBenefit from './components/Home/PlannerBenefit';
+import TrendingRutePerjalanan from './components/Home/TrendingRutePerjalanan';
+import axios from "axios";
 
 export default {
   name: 'index',
   bodyClass: 'index-page',
   components: {
     Parallax,
-    PlannerBenefit
+    PlannerBenefit,
+    TrendingRutePerjalanan
+  },
+  data(){
+    return {
+      trending: null
+    }
+  },
+  methods: {
+    setTrending($data){
+      this.trending = $data
+      console.log(this.trending);
+    }
+  },
+  mounted(){
+    axios.get('user/rute_perjalanan/trending')
+    .then((response) => {
+      this.setTrending(response.data)
+    })
+    .catch((error) => {
+
+    })
   }
 };
 </script>

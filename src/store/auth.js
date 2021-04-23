@@ -35,7 +35,7 @@ export default {
 
             try{
                 let response = await axios.get('auth/me')
-
+                localStorage.setItem('id_user', response.data.id)
                 commit('SET_USER', response.data)
             }catch(e){
                 commit('SET_USER', null)

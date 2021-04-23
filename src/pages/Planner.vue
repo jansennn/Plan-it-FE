@@ -118,6 +118,29 @@
                 </b-form-select>
               </b-form-group>
             </div>
+            <div class="col-sm-6 mt-4">
+              <b-form-group
+                id="input-group-1"
+                label="how many hours in every destination:"
+                label-for="input-1"
+              >
+                <b-form-input
+                  id="input-1"
+                  type="number"
+                  placeholder="how many hours in every destination"
+                  required
+                ></b-form-input>
+              </b-form-group>
+            </div>
+            <div class="col-sm-6 mt-4">
+              <b-form-group
+                id="input-group-1"
+                label="What time you start travel:"
+                label-for="input-1"
+              >
+                <date-picker v-model="value5" type="time" placeholder="Select time" style="width:100%"></date-picker>
+              </b-form-group>
+            </div>
             <div class="col-sm-12 mt-4">
               <b-form-group
                 id="input-group-1"
@@ -157,9 +180,31 @@
               <n-checkbox v-model="checkboxes.panorama">Panorama</n-checkbox>
             </div>
             <div class="col-sm-6">
-              <n-checkbox v-model="checkboxes.taman_wisata"
-                >Taman Wisata</n-checkbox
-              >
+              <n-checkbox v-model="checkboxes.taman_wisata">Taman Wisata</n-checkbox>
+            </div>
+            <div class="col-sm-6">
+              <n-checkbox v-model="checkboxes.desa_wisata">Desa Wisata</n-checkbox>
+            </div>
+            <div class="col-sm-6">
+              <n-checkbox v-model="checkboxes.wisata_budaya">Wisata Budaya</n-checkbox>
+            </div>
+            <div class="col-sm-6">
+              <n-checkbox v-model="checkboxes.kuliner">Kuliner</n-checkbox>
+            </div>
+            <div class="col-sm-6">
+              <n-checkbox v-model="checkboxes.kebun_binatang">Kebun Binatang</n-checkbox>
+            </div>
+            <div class="col-sm-6">
+              <n-checkbox v-model="checkboxes.hiking">Hiking</n-checkbox>
+            </div>
+            <div class="col-sm-6">
+              <n-checkbox v-model="checkboxes.camping">Camping</n-checkbox>
+            </div>
+            <div class="col-sm-6">
+              <n-checkbox v-model="checkboxes.galeri_seni">Galeri Seni</n-checkbox>
+            </div>
+            <div class="col-sm-6">
+              <n-checkbox v-model="checkboxes.tradisi_lokal">Tradisi Lokal</n-checkbox>
             </div>
             <div class="col-sm-12 mt-4 mb-4">
               <!-- <n-button type="submit info" round block
@@ -213,7 +258,20 @@ export default {
         mount: false,
         panorama: false,
         taman_wisata: false,
+        wisata_alam: false,
+        desa_wisata: false,
+        wisata_budaya: false,
+        kuliner: false,
+        kebun_binatang: false,
+        hiking: false,
+        camping: false,
+        galeri_seni: false,
+        tradisi_lokal: false,
+        tempat_ibadah: false,
+        agrowisata: false,
+        monumen: false,
       },
+      value5: null,
       date: [],
       select_transportation: [
         { value: "mobil", text: "Mobil" },

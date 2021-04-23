@@ -24,7 +24,7 @@
         <h2 class="font-weight-bold">Upcoming Trip ({{ upcoming_rute_perjalanan.length }})</h2>
         <div class="row">
           <div class="col-md-4" v-for="item in upcoming_rute_perjalanan" :key="item.id">
-            <card class="rounded" style="width: 20rem">
+            <card class="rounded">
               <img
                   slot="image"
                   class="card-img-top"
@@ -78,7 +78,7 @@ import Card from "@/components/Cards/Card.vue";
 import axios from "axios";
 
 export default {
-  name: "planner",
+  name: "historyTravel",
   components: {
     Parallax,
     [FormGroupInput.name]: FormGroupInput,
@@ -95,7 +95,8 @@ export default {
         disabledChecked: true,
       },
       upcoming_rute_perjalanan: [],
-      past_rute_perjalanan: []
+      past_rute_perjalanan: [],
+      id_user: localStorage.getItem("id_user"),
     };
   },
   methods: {

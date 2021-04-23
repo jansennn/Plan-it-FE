@@ -17,6 +17,9 @@
         <i class="fa fa-map-marker fa-lg" aria-hidden="true"></i>
         {{ destinasi.address }}
       </p>
+      <p class="mt-4">
+        {{ destinasi.deskripsi }}
+      </p>
 
       <GmapMap
         :center="{ lat: 2.574647937733531, lng: 98.84375603456863 }"

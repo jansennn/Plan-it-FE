@@ -9,7 +9,7 @@
       <navbar-admin></navbar-admin>
 
       <div class="container-fluid">
-        <h1 class="mt-4">Add Destinasi</h1>
+        <h1 class="mt-4">Tambah Destinasi</h1>
         <div class="row">
           <div class="col-sm-6 col-12 mb-4">
             <label for="range-2">Nama Destinasi</label>
@@ -39,7 +39,7 @@
             </b-form-select>
           </div>
           <div class="col-sm-6 col-12 mb-4">
-            <label for="range-2">Category Wisata</label>
+            <label for="range-2">Kategory Wisata</label>
             <b-form-select v-model="inputCategory">
               <b-form-select-option
                 v-for="categoryWisata in categoryWisatas"
