@@ -1,12 +1,12 @@
 <template>
   <div class="history_travel">
     <div
-        class="page-header clear-filter"
-        style="min-height: 400px; max-height: 600px"
+      class="page-header clear-filter"
+      style="min-height: 400px; max-height: 600px"
     >
       <parallax
-          class="page-header-image"
-          style="
+        class="page-header-image"
+        style="
           background-image: url('img/header-home.jpg');
           filter: brightness(50%);
           height: 400px;
@@ -21,15 +21,32 @@
 
     <section class="section-upcoming-trip mt-4">
       <div class="container">
-        <h2 class="font-weight-bold">Upcoming Trip ({{ upcoming_rute_perjalanan.length }})</h2>
+        <h2 class="font-weight-bold">
+          Upcoming Trip ({{ upcoming_rute_perjalanan.length }})
+        </h2>
+        <div v-if="cekNullUpcoming">
+          <b-alert show variant="info">
+            <h4 class="alert-heading">Yahhh !</h4>
+            <p>Kamu belum memiliki Rute perjalanan :(.</p>
+            <hr />
+            <p class="mb-0">
+              Ayo buat rute perjalananmu, dan nikmati perjalananmu di sekitar
+              Danau Toba.
+            </p>
+          </b-alert>
+        </div>
         <div class="row">
-          <div class="col-md-4" v-for="item in upcoming_rute_perjalanan" :key="item.id">
+          <div
+            class="col-md-4"
+            v-for="item in upcoming_rute_perjalanan"
+            :key="item.id"
+          >
             <card class="rounded">
               <img
-                  slot="image"
-                  class="card-img-top"
-                  :src="'img/bg4.jpg'"
-                  alt="Card image cap"
+                slot="image"
+                class="card-img-top"
+                :src="'img/bg4.jpg'"
+                alt="Card image cap"
               />
               <div>
                 <h4 class="card-title">{{ item.name }}</h4>
@@ -37,7 +54,9 @@
                   {{ item.tanggal_awal }} - {{ item.tanggal_akhir }}
                 </p>
               </div>
-              <router-link class="btn btn-info" :to="'/timeline/'+item.id">Cek <i class="fa fa-arrow-right"></i></router-link>
+              <router-link class="btn btn-info" :to="'/timeline/' + item.id"
+                >Cek <i class="fa fa-arrow-right"></i
+              ></router-link>
             </card>
           </div>
         </div>
@@ -46,15 +65,32 @@
 
     <section class="section-past-trip mt-4">
       <div class="container">
-        <h2 class="font-weight-bold">Past Trip ({{ past_rute_perjalanan.length }})</h2>
+        <h2 class="font-weight-bold">
+          Past Trip ({{ past_rute_perjalanan.length }})
+        </h2>
+        <div v-if="cekNullPast">
+          <b-alert show variant="info">
+            <h4 class="alert-heading">Yahhh !</h4>
+            <p>Kamu belum memiliki Rute perjalanan :(.</p>
+            <hr />
+            <p class="mb-0">
+              Ayo buat rute perjalananmu, dan nikmati perjalananmu di sekitar
+              Danau Toba.
+            </p>
+          </b-alert>
+        </div>
         <div class="row">
-          <div class="col-md-4" v-for="item in past_rute_perjalanan" :key="item.id">
+          <div
+            class="col-md-4"
+            v-for="item in past_rute_perjalanan"
+            :key="item.id"
+          >
             <card class="rounded" style="width: 20rem">
               <img
-                  slot="image"
-                  class="card-img-top"
-                  :src="'img/bg4.jpg'"
-                  alt="Card image cap"
+                slot="image"
+                class="card-img-top"
+                :src="'img/bg4.jpg'"
+                alt="Card image cap"
               />
               <div>
                 <h4 class="card-title">{{ item.name }}</h4>
@@ -62,7 +98,9 @@
                   {{ item.tanggal_awal }} - {{ item.tanggal_akhir }}
                 </p>
               </div>
-              <router-link class="btn btn-info" :to="'/timeline/'+item.id">Cek <i class="fa fa-arrow-right"></i></router-link>
+              <router-link class="btn btn-info" :to="'/timeline/' + item.id"
+                >Cek <i class="fa fa-arrow-right"></i
+              ></router-link>
             </card>
           </div>
         </div>
@@ -88,6 +126,8 @@ export default {
   },
   data() {
     return {
+      cekNullUpcoming: false,
+      cekNullPast: false,
       checkboxes: {
         unchecked: false,
         checked: true,
@@ -100,27 +140,40 @@ export default {
     };
   },
   methods: {
-    setUpcomingRutePerjalanan($data){
+    setUpcomingRutePerjalanan($data) {
       this.upcoming_rute_perjalanan = $data;
     },
-    setPastRutePerjalanan($data){
+    setPastRutePerjalanan($data) {
       this.past_rute_perjalanan = $data;
+    },
+    setNullUpcoming() {
+      this.cekNullUpcoming = true
+    },
+    setNullPast() {
+      this.cekNullPast = true
     }
   },
-  mounted(){
-    axios.get('user/rute_perjalanan_upcoming/'+1)
+  mounted() {
+    axios
+      .get("user/rute_perjalanan_upcoming/" + 1)
       .then((response) => {
         this.setUpcomingRutePerjalanan(response.data);
-          console.log(response)
+        if(response.data.length === 0){
+          this.setNullUpcoming();
+        }
       })
       .catch((error) => console.log(error));
-    
-    axios.get('user/rute_perjalanan_past/'+1)
+
+    axios
+      .get("user/rute_perjalanan_past/" + 1)
       .then((response) => {
         this.setPastRutePerjalanan(response.data);
+        if(response.data.length === 0){
+          this.setNullPast();
+        }
       })
-      .catch((error) =>console.log(error))
-  }
+      .catch((error) => console.log(error));
+  },
 };
 </script>
 
