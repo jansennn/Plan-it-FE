@@ -2,7 +2,7 @@
   <div class="page-header clear-filter" filter-color="blue">
     <div
         class="page-header-image"
-        style="background-image: url('img/login.jpg')"
+        style="background-image: url('img/login.jpg');"
     ></div>
     <div class="content">
       <div class="container">
@@ -18,6 +18,7 @@
                   addon-left-icon="now-ui-icons users_circle-08"
                   placeholder="First Name..."
                   v-model="form.firstname"
+                  st
               >
               </fg-input>
 
@@ -73,7 +74,7 @@ import { mapActions } from "vuex";
 
 export default {
   name: "register-page",
-  bodyClass: "register-page",
+  bodyClass: "login-page",
   components: {
     Card,
     MainFooter,
@@ -101,9 +102,21 @@ export default {
             this.$router.replace({
               name: "login",
             });
+            this.$toast.error("Success Register New Account", {
+              type: "success",
+              position: "top-right",
+              duration: 3000,
+              dismissible: true,
+            });
           })
           .catch(() => {
             console.log("failed");
+            this.$toast.error("Email is Exist", {
+              type: "error",
+              position: "top-right",
+              duration: 3000,
+              dismissible: true,
+            });
           });
     },
   },

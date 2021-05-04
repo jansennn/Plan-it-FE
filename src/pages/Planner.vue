@@ -321,7 +321,7 @@ export default {
         })
         .then((response) => {
           console.log(response);
-          this.hideLoader();
+          this.hideLoaderSuccess();
           this.$toast.success("Success Make Itenerary", {
             type: "success",
             position: "top-right",
@@ -330,7 +330,7 @@ export default {
           });
         })
         .catch((error) => {
-          this.hideLoader();
+          this.hideLoaderFailed();
           this.$toast.error("Failed Make Itenerary", {
             type: "error",
             position: "top-right",
@@ -350,9 +350,12 @@ export default {
     showLoader(){
       this.isLoading = true;
     },
-    hideLoader(){
+    hideLoaderSuccess(){
       this.isLoading = false;
       this.$router.push({ path: '/historyTravel' })
+    },
+    hideLoaderFailed(){
+      this.isLoading = false;
     },
     onCancel() {
       console.log("User cancelled the loader.");
