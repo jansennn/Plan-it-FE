@@ -3,7 +3,7 @@
     <div class="page-header page-header-small mb-4">
       <parallax
         class="page-header-image"
-        style="background-image: url('img/bg_destination.jpg')"
+        :style="{ 'background-image': 'url('+destinasi.image+')'}"
       >
       </parallax>
       <div class="content-center">
