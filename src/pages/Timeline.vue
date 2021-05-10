@@ -37,7 +37,7 @@
             <b-row no-gutters>
               <b-col md="2" sm="2" xs="2">
                 <b-card-body>
-                  <b-card-text> 10.00 - 17.00 </b-card-text>
+                  <b-card-text> {{ item3.jam_mulai }} - {{ item3.jam_selesai }} </b-card-text>
                 </b-card-body>
               </b-col>
               <b-col md="4" sm="4" xs="4">
@@ -54,7 +54,7 @@
                     lead-in to additional content. This content is a little bit
                     longer.
                   </b-card-text>
-                  <router-link class="btn btn-info" :to="'/detailDestination/'+item3.id"> Open Destination <i class="fas fa-arrow-right"></i></router-link>
+                  <router-link class="btn btn-info" :to="'/detailDestination/'+item3.destinasi.id"> Open Destination <i class="fas fa-arrow-right"></i></router-link>
                 </b-card-body>
               </b-col>
             </b-row>

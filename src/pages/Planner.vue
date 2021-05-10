@@ -128,6 +128,7 @@
                   id="input-1"
                   type="number"
                   placeholder="how many hours in every destination"
+                  v-model="hours"
                   required
                 ></b-form-input>
               </b-form-group>
@@ -138,7 +139,7 @@
                 label="What time you start travel:"
                 label-for="input-1"
               >
-                <date-picker v-model="value5" type="time" placeholder="Select time" style="width:100%"></date-picker>
+                <date-picker v-model="time_start" type="time" placeholder="Select time" style="width:100%"></date-picker>
               </b-form-group>
             </div>
             <div class="col-sm-12 mt-4">
@@ -271,7 +272,6 @@ export default {
         agrowisata: false,
         monumen: false,
       },
-      value5: null,
       date: [],
       select_transportation: [
         { value: "mobil", text: "Mobil" },
@@ -284,6 +284,8 @@ export default {
       name_route_travel: "",
       isLoading: false,
       fullPage: true,
+      hours: null,
+      time_start: null
     };
   },
   methods: {
@@ -318,6 +320,8 @@ export default {
           date: this.date,
           user_id: this.user_id,
           name_route_travel: this.name_route_travel,
+          hours: this.hours,
+          time_start: this.time_start
         })
         .then((response) => {
           console.log(response);

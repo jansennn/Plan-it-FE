@@ -24,7 +24,11 @@
           <div class="row mt-3 mt-md-0 text-center text-md-left">
             <div class="col-md-4 mt-2" v-for="destination in destinations" :key="destination.id">
               <Card style="width: 20rem;height:30rem" class="ml-1 mr-1">
-                <img slot="image" class="card-img-top" :src=destination.image alt="Card image cap" style="height:15rem">
+                <b-card-img
+                  slot="image" class="card-img-top" :src="destination.image"
+                  style="height:15rem"
+                  alt="Image"
+                ></b-card-img>
                 <div>
                   <h6 class="card-category">{{ destination.kategori }}</h6>
                   <h3 class="card-title">{{ destination.name }}</h3>
