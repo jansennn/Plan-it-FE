@@ -49,7 +49,7 @@ export default {
     return {
       perPage: 10,
       currentPage: 1,
-      fields: [{ key: 'name', label: 'Nama Destinasi'}, 'address', 'rating', { key: 'lat', label: 'Latitude'}, { key: 'long', label: 'Longitude'}, 'image', 'opening_hours', 'closed_hours'],
+      fields: [{ key: 'name', label: 'Nama Destinasi'}, 'address', 'rating', { key: 'lat', label: 'Latitude'}, { key: 'long', label: 'Longitude'}, 'image', 'opening_hours', 'closed_hours', {label: 'Action'}],
       destinasis: [],
     };
   },

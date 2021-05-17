@@ -97,6 +97,14 @@
               style="height: 40px"
             ></b-form-timepicker>
           </div>
+          <div class="col-sm-6 col-12 mb-4">
+            <label for="range-2">Description</label>
+            <b-form-textarea
+              id="textarea-large"
+              placeholder="Description"
+              v-model="description"
+            ></b-form-textarea>
+          </div>
         </div>
         <div class="col">
           <h3>Map</h3>
@@ -157,6 +165,7 @@ export default {
       long: "",
       opening_hours: "",
       closed_hours: "",
+      description: ""
     };
   },
   created: {},
@@ -172,7 +181,7 @@ export default {
         lat: location.latLng.lat(),
         long: location.latLng.lng(),
       };
-      console.log(this.coordinates);
+      console.log(this.coordinates);  
     },
     storeDestination() {
       axios
@@ -187,8 +196,12 @@ export default {
           image: this.image,
           opening_hours: this.opening_hours,
           closed_hours: this.closed_hours,
+          description: this.description
         })
         .then(function (response) {
+          this.$router.replace({
+            name: "indexDestinasi",
+          });          
           this.$toast.success("Success Add Destinasi", {
             type: "success",
             position: "top-right",

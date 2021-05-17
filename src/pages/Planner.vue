@@ -95,6 +95,7 @@
                   value-type="format"
                   format="DD-MM-YYYY"
                   style="width:100%"
+                  :required=true
                 ></date-picker>
               </b-form-group>
             </div>
@@ -107,6 +108,7 @@
                 <b-form-select
                   v-model="type_transportation"
                   :options="select_transportation"
+                  required
                   size="sm"
                 >
                   <template #first>
@@ -129,7 +131,7 @@
                   type="number"
                   placeholder="how many hours in every destination"
                   v-model="hours"
-                  required
+                  :required=true
                 ></b-form-input>
               </b-form-group>
             </div>

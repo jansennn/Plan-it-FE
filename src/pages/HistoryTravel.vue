@@ -154,8 +154,9 @@ export default {
     }
   },
   mounted() {
+    var user_id = localStorage.getItem("id_user");
     axios
-      .get("user/rute_perjalanan_upcoming/" + 1)
+      .get("user/rute_perjalanan_upcoming/" + user_id)
       .then((response) => {
         this.setUpcomingRutePerjalanan(response.data);
         if(response.data.length === 0){
@@ -165,7 +166,7 @@ export default {
       .catch((error) => console.log(error));
 
     axios
-      .get("user/rute_perjalanan_past/" + 1)
+      .get("user/rute_perjalanan_past/" + user_id)
       .then((response) => {
         this.setPastRutePerjalanan(response.data);
         if(response.data.length === 0){
