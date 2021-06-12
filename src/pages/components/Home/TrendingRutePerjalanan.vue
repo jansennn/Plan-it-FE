@@ -12,8 +12,9 @@
             <img
               slot="image"
               class="card-img-top"
-              :src="'img/bg4.jpg'"
+              :src="item.gambar"
               alt="Card image cap"
+              style="height:250px"
             />
             <div>
               <h4 class="card-title font-weight-bold">{{ item.name }}</h4>

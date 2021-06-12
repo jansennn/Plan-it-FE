@@ -45,8 +45,9 @@
               <img
                 slot="image"
                 class="card-img-top"
-                :src="'img/bg4.jpg'"
+                :src="item.gambar"
                 alt="Card image cap"
+                style="height:250px"
               />
               <div>
                 <h4 class="card-title">{{ item.name }}</h4>
@@ -54,9 +55,13 @@
                   {{ item.tanggal_awal }} - {{ item.tanggal_akhir }}
                 </p>
               </div>
-              <router-link class="btn btn-info" :to="'/timeline/' + item.id"
-                >Cek <i class="fa fa-arrow-right"></i
-              ></router-link>
+              <div class="row">
+                <div class="col-md-6 float-left">
+                  <router-link class="btn btn-info" :to="'/timeline/' + item.id"
+                    >Cek <i class="fa fa-arrow-right"></i
+                  ></router-link>
+                </div>
+              </div>
             </card>
           </div>
         </div>
@@ -89,8 +94,9 @@
               <img
                 slot="image"
                 class="card-img-top"
-                :src="'img/bg4.jpg'"
+                :src="item.gambar"
                 alt="Card image cap"
+                style="height:250px"
               />
               <div>
                 <h4 class="card-title">{{ item.name }}</h4>
