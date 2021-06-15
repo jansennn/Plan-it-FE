@@ -6,19 +6,19 @@
     >
       <parallax
         class="page-header-image"
-        style="
-          background-image: url('img/header-home.jpg');
-          filter: brightness(50%);
-          height: 400px;
-        "
+        :style="{ 'background-image': 'url('+timeline.gambar+')'}"
       ></parallax>
 
       <div class="container mt-5">
         <div class="content-center brand"></div>
         <h1>{{ timeline.name }}</h1>
         <h3 class="h1-seo">{{ timeline.deskripsi }}</h3>
-        <b-button pill variant="info" v-b-modal.modal-prevent-closing>
+        
+        <b-button pill variant="info" class="mr-3" v-if="id_user == timeline.user_id" v-b-modal.modal-prevent-closing>
           Budget (Rp)</b-button
+        >
+        <b-button pill variant="danger" v-if="id_user == timeline.user_id" v-on:click="deleteRutePerjalanan">
+          <i class="fa fa-trash"></i> Delete</b-button
         >
       </div>
     </div>
@@ -49,10 +49,9 @@
               </b-col>
               <b-col md="6" sm="6" xs="6">
                 <b-card-body :title="item3.destinasi.name">
+                  <star-rating v-bind:read-only="true" v-bind:star-size="15" :rating="item3.destinasi.rating" :increment="0.5" :inline="true"/>
                   <b-card-text>
-                    This is a wider card with supporting text as a natural
-                    lead-in to additional content. This content is a little bit
-                    longer.
+                    let's take a trip to this tourist spot, and enjoy the feeling you've never felt.
                   </b-card-text>
                   <router-link class="btn btn-info" :to="'/detailDestination/'+item3.destinasi.id"> Open Destination <i class="fas fa-arrow-right"></i></router-link>
                 </b-card-body>
@@ -95,14 +94,18 @@
 
 <script>
 import axios from "axios";
+import StarRating from 'vue-star-rating'
 
 export default {
   name: "Timeline",
-  components: {},
+  components: {
+    StarRating
+  },
   data() {
     return {
       timeline: [],
       budget: "",
+      id_user: null
     };
   },
   methods: {
@@ -125,6 +128,19 @@ export default {
             this.$bvModal.hide("modal-prevent-closing");
           });
         });
+    },
+    deleteRutePerjalanan() {
+      axios
+      .delete("user/rute_perjalanan/" + this.$route.params.id)
+      .then((response) => {
+        this.$toast.info("Success Delete Travel Route", {
+            type: "info",
+            position: "top-right",
+            duration: 3000,
+            dismissible: true,
+          });
+        this.$router.push({ path: '/historyTravel' })  
+      })
     },
     resetModal() {
       this.budget = "";
@@ -156,6 +172,8 @@ export default {
         console.log(response.data);
       })
       .catch((error) => console.log(error));
+
+    this.id_user = localStorage.getItem("id_user");  
   },
 };
 </script>

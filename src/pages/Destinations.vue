@@ -14,11 +14,20 @@
     </div>
     <div class=" container col col-md-6 mt-4">
       <fg-input class="col-12"
-                placeholder="Search Destinasi"
-                addon-right-icon="now-ui-icons ui-1_zoom-bold">
+        v-model="search"
+        placeholder="Search Destinasi"
+        addon-right-icon="now-ui-icons ui-1_zoom-bold"
+        @keyup="searchDestination">
       </fg-input>
     </div>
     <div class="container">
+      <div v-if="cekNull">
+        <b-alert show variant="info">
+          <h4 class="alert-heading">Yahhh !</h4>
+          <p>there is no destination you are looking for :(.</p>
+          
+        </b-alert>
+      </div>
       <div class="row mt-4 mt-md-5">
         <div class="col col-md-12">
           <div class="row mt-3 mt-md-0 text-center text-md-left">
@@ -30,9 +39,9 @@
                   alt="Image"
                 ></b-card-img>
                 <div>
-                  <h6 class="card-category">{{ destination.kategori }}</h6>
                   <h3 class="card-title">{{ destination.name }}</h3>
-                  <p class="card-text">{{ destination.durasi }}<br/>{{ destination.kabupaten }}</p>
+                  <p class="card-text">{{ destination.opening_hours }}.00 - {{ destination.closed_hours }}.00 WIB</p>
+                  <star-rating  v-bind:read-only="true" v-bind:star-size="20" :rating="destination.rating" :increment="0.5"/>
                   <router-link class="btn btn-info" :to="'/detailDestination/'+destination.id"><i class="fa fa-paper-plane-o"></i> Open</router-link>
                 </div>
               </Card>
@@ -48,21 +57,37 @@
 import Card from "@/components/Cards/Card.vue";
 import { FormGroupInput } from '@/components';
 import axios from "axios";
+import StarRating from 'vue-star-rating'
 
 export default {
   name: "Destinations",
   components: {
     Card,
     [FormGroupInput.name]: FormGroupInput,
+    StarRating
   },
   data() {
     return {
-      destinations: []
+      destinations: [],
+      search: '',
+      cekNull: false
     }
   },
   methods: {
     setDestination(data) {
       this.destinations = data;
+    },
+    searchDestination(){
+      axios.get('user/search_destination/' + this.search)
+      .then((response) => {
+        if(response.data.length === 0){
+          this.cekNull = true
+        }
+        if(response.data.length != 0){
+          this.cekNull = false
+        }
+        this.setDestination(response.data)
+      })
     }
   },
   mounted() {

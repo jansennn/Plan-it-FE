@@ -67,7 +67,7 @@
                 ></b-form-input>
               </b-form-group>
             </div>
-            <div class="col-sm-6 mt-4">
+            <!-- <div class="col-sm-6 mt-4">
               <b-form-group
                 id="input-group-1"
                 label="How many destination:"
@@ -81,24 +81,8 @@
                   v-model="destination_length"
                 ></b-form-input>
               </b-form-group>
-            </div>
-            <div class="col-sm-6 mt-4">
-              <b-form-group
-                id="input-group-1"
-                label="When start travel:"
-                label-for="input-1"
-              >
-                <date-picker
-                  v-model="date"
-                  type="date"
-                  range
-                  value-type="format"
-                  format="DD-MM-YYYY"
-                  style="width:100%"
-                  :required=true
-                ></date-picker>
-              </b-form-group>
-            </div>
+            </div> -->
+            
             <div class="col-sm-6 mt-4">
               <b-form-group
                 id="input-group-1"
@@ -123,7 +107,7 @@
             <div class="col-sm-6 mt-4">
               <b-form-group
                 id="input-group-1"
-                label="how many hours in every destination:"
+                label="how many hours in every destination (in hours):"
                 label-for="input-1"
               >
                 <b-form-input
@@ -138,6 +122,24 @@
             <div class="col-sm-6 mt-4">
               <b-form-group
                 id="input-group-1"
+                label="When start travel:"
+                label-for="input-1"
+              >
+                <date-picker
+                  v-model="date"
+                  type="date"
+                  range
+                  value-type="format"
+                  format="DD-MM-YYYY"
+                  style="width:100%"
+                  :required=true
+                ></date-picker>
+              </b-form-group>
+            </div>
+            
+            <div class="col-sm-6 mt-4">
+              <b-form-group
+                id="input-group-1"
                 label="What time you start travel:"
                 label-for="input-1"
               >
@@ -147,7 +149,7 @@
             <div class="col-sm-12 mt-4">
               <b-form-group
                 id="input-group-1"
-                label="Pick Your Location:"
+                label="Start Location:"
                 label-for="input-1"
               >
                 <GmapMap
@@ -168,47 +170,28 @@
               <p class="category">Select the type of tourist spot</p>
             </div>
             <div class="col-sm-6">
+              <p class="font-weight-bold">Wisata Alam</p>
               <n-checkbox v-model="checkboxes.beach">Beach</n-checkbox>
-            </div>
-            <div class="col-sm-6">
               <n-checkbox v-model="checkboxes.waterfall">Waterfall</n-checkbox>
-            </div>
-            <div class="col-sm-6">
-              <n-checkbox v-model="checkboxes.museum">Museum</n-checkbox>
-            </div>
-            <div class="col-sm-6">
               <n-checkbox v-model="checkboxes.mount">Mount</n-checkbox>
-            </div>
-            <div class="col-sm-6">
-              <n-checkbox v-model="checkboxes.panorama">Panorama</n-checkbox>
-            </div>
-            <div class="col-sm-6">
-              <n-checkbox v-model="checkboxes.taman_wisata">Taman Wisata</n-checkbox>
-            </div>
-            <div class="col-sm-6">
-              <n-checkbox v-model="checkboxes.desa_wisata">Desa Wisata</n-checkbox>
-            </div>
-            <div class="col-sm-6">
-              <n-checkbox v-model="checkboxes.wisata_budaya">Wisata Budaya</n-checkbox>
-            </div>
-            <div class="col-sm-6">
-              <n-checkbox v-model="checkboxes.kuliner">Kuliner</n-checkbox>
-            </div>
-            <div class="col-sm-6">
-              <n-checkbox v-model="checkboxes.kebun_binatang">Kebun Binatang</n-checkbox>
-            </div>
-            <div class="col-sm-6">
-              <n-checkbox v-model="checkboxes.hiking">Hiking</n-checkbox>
-            </div>
-            <div class="col-sm-6">
-              <n-checkbox v-model="checkboxes.camping">Camping</n-checkbox>
-            </div>
-            <div class="col-sm-6">
+              <br>
+              <p class="font-weight-bold">Wisata Sejarah</p>
+              <n-checkbox v-model="checkboxes.museum">Museum</n-checkbox>
               <n-checkbox v-model="checkboxes.galeri_seni">Galeri Seni</n-checkbox>
             </div>
             <div class="col-sm-6">
-              <n-checkbox v-model="checkboxes.tradisi_lokal">Tradisi Lokal</n-checkbox>
+              <p class="font-weight-bold">Wisata Budaya</p>
+              <n-checkbox v-model="checkboxes.desa_wisata">Desa Wisata</n-checkbox>
+              <n-checkbox v-model="checkboxes.taman_wisata">Taman Wisata</n-checkbox>
+              <n-checkbox v-model="checkboxes.tradisi_lokal">Tradisi Lokal</n-checkbox><br>
+              <p class="font-weight-bold">Wisata Kuliner</p>
+              <n-checkbox v-model="checkboxes.kuliner">Cafe & Resto</n-checkbox>
+              <p class="font-weight-bold">Wisata Hiburan</p>
+              <n-checkbox v-model="checkboxes.kebun_binatang">Kebun Binatang</n-checkbox>
+              <n-checkbox v-model="checkboxes.hiking">Hiking</n-checkbox>
+              <n-checkbox v-model="checkboxes.camping">Camping</n-checkbox>
             </div>
+            
             <div class="col-sm-12 mt-4 mb-4">
               <!-- <n-button type="submit info" round block
                 ><i class="fa fa-paper-plane"></i>&nbsp;&nbsp; Save</n-button
@@ -263,7 +246,6 @@ export default {
         taman_wisata: false,
         wisata_alam: false,
         desa_wisata: false,
-        wisata_budaya: false,
         kuliner: false,
         kebun_binatang: false,
         hiking: false,
@@ -281,13 +263,14 @@ export default {
       ],
       type_transportation: "",
       category_wisata: [],
-      destination_length: null,
-      user_id: 1,
+      // destination_length: null,
+      user_id: localStorage.getItem("id_user"),
       name_route_travel: "",
       isLoading: false,
       fullPage: true,
       hours: null,
-      time_start: null
+      time_start: null,
+      gambar: ""
     };
   },
   methods: {
@@ -317,13 +300,14 @@ export default {
       axios
         .post("user/testInisiasi", {
           category_wisata: this.category_wisata,
-          destination_length: this.destination_length,
+          // destination_length: this.destination_length,
           type_transportation: this.type_transportation,
           date: this.date,
           user_id: this.user_id,
           name_route_travel: this.name_route_travel,
           hours: this.hours,
-          time_start: this.time_start
+          time_start: this.time_start,
+          gambar: this.gambar
         })
         .then((response) => {
           console.log(response);
@@ -366,12 +350,25 @@ export default {
     onCancel() {
       console.log("User cancelled the loader.");
     },
+    getRandomImage(){
+      
+    }
+  },
+  mounted() {
+    axios.get("https://api.unsplash.com/photos/random?client_id=OEakP2kDZwzTdwW_k42VL_Sc7dugAmv8wZpZM0hem1w&query=lake toba")
+      .then((response) => {
+         this.gambar = response.data.urls.regular
+         console.log(this.gambar)
+      })
+      .catch((error) => {
+         console.log(error) 
+      })
   }
 };
 </script>
 
 <style>
 .section-inform .container .row .kata {
-  float-left: ;
+
 }
 </style>
