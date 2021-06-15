@@ -126,9 +126,25 @@
                 label-for="input-1"
               >
                 <date-picker
-                  v-model="date"
+                  v-model="date_start"
+                  type="datetime"
+                  value-type="format"
+                  format="DD-MM-YYYY:hh:00:00"
+                  style="width:100%"
+                  :required=true
+                ></date-picker>
+              </b-form-group>
+            </div>
+
+            <div class="col-sm-6 mt-4">
+              <b-form-group
+                id="input-group-1"
+                label="When end travel:"
+                label-for="input-1"
+              >
+                <date-picker
+                  v-model="date_end"
                   type="date"
-                  range
                   value-type="format"
                   format="DD-MM-YYYY"
                   style="width:100%"
@@ -137,15 +153,6 @@
               </b-form-group>
             </div>
             
-            <div class="col-sm-6 mt-4">
-              <b-form-group
-                id="input-group-1"
-                label="What time you start travel:"
-                label-for="input-1"
-              >
-                <date-picker v-model="time_start" type="time" placeholder="Select time" style="width:100%"></date-picker>
-              </b-form-group>
-            </div>
             <div class="col-sm-12 mt-4">
               <b-form-group
                 id="input-group-1"
@@ -162,6 +169,10 @@
                     :position="{ lat: 2.574647937733531, lng: 98.84375603456863 }"
                     :clickable="true"
                     :draggable="true"
+                    @click="
+                      center = { lat: 2.574647937733531, lng: 98.84375603456863 }
+                    "
+                    @drag="updateCoordinates"
                   />
                 </GmapMap>
               </b-form-group>              
@@ -256,7 +267,8 @@ export default {
         agrowisata: false,
         monumen: false,
       },
-      date: [],
+      date_start: [],
+      date_end: [],
       select_transportation: [
         { value: "mobil", text: "Mobil" },
         { value: "sepeda_motor", text: "Sepeda Motor" },
@@ -269,8 +281,9 @@ export default {
       isLoading: false,
       fullPage: true,
       hours: null,
-      time_start: null,
-      gambar: ""
+      gambar: "",
+      lat: "",
+      long: ""
     };
   },
   methods: {
@@ -302,12 +315,14 @@ export default {
           category_wisata: this.category_wisata,
           // destination_length: this.destination_length,
           type_transportation: this.type_transportation,
-          date: this.date,
+          date_start: this.date_start,
+          date_end: this.date_end,
           user_id: this.user_id,
           name_route_travel: this.name_route_travel,
           hours: this.hours,
-          time_start: this.time_start,
-          gambar: this.gambar
+          gambar: this.gambar,
+          lat: this.lat,
+          long: this.long
         })
         .then((response) => {
           console.log(response);
@@ -342,7 +357,7 @@ export default {
     },
     hideLoaderSuccess(){
       this.isLoading = false;
-      this.$router.push({ path: '/historyTravel' })
+//      this.$router.push({ path: '/historyTravel' })
     },
     hideLoaderFailed(){
       this.isLoading = false;
@@ -352,7 +367,11 @@ export default {
     },
     getRandomImage(){
       
-    }
+    },
+    updateCoordinates(location) {
+      this.lat =location.latLng.lat()
+      this.long =location.latLng.lng()
+    },
   },
   mounted() {
     axios.get("https://api.unsplash.com/photos/random?client_id=OEakP2kDZwzTdwW_k42VL_Sc7dugAmv8wZpZM0hem1w&query=lake toba")
