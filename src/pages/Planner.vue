@@ -131,6 +131,7 @@
                   value-type="format"
                   format="DD-MM-YYYY:hh:00:00"
                   style="width:100%"
+                  :disabledDates="disabledDates"
                   :required=true
                 ></date-picker>
               </b-form-group>
@@ -154,6 +155,38 @@
             </div>
             
             <div class="col-sm-12 mt-4">
+              <p class="category">Select the type of tourist spot</p>
+            </div>
+            <div class="col-sm-6">
+              <p class="font-weight-bold">Wisata Alam</p>
+              <n-checkbox v-model="checkboxes.beach">Beach</n-checkbox>
+              <n-checkbox v-model="checkboxes.mount">Mountain</n-checkbox>
+              <n-checkbox v-model="checkboxes.waterfall">Waterfall</n-checkbox>
+              <n-checkbox v-model="checkboxes.panorama">Panorama</n-checkbox>
+              <br>
+              <p class="font-weight-bold">Wisata Sejarah</p>
+              <n-checkbox v-model="checkboxes.museum">Museum</n-checkbox>
+              <n-checkbox v-model="checkboxes.art_gallery">Art Gallery</n-checkbox>
+              <n-checkbox v-model="checkboxes.monument">Monument</n-checkbox>
+              <n-checkbox v-model="checkboxes.historical_place">Historical Place</n-checkbox>
+            </div>
+            <div class="col-sm-6">
+              <p class="font-weight-bold">Wisata Budaya</p>
+              <n-checkbox v-model="checkboxes.tourist_village">Tourist Village</n-checkbox>
+              <n-checkbox v-model="checkboxes.tourist_park">Tourist Park</n-checkbox>
+              <n-checkbox v-model="checkboxes.local_tradition">Local Tradition</n-checkbox>
+              <n-checkbox v-model="checkboxes.worship">places of worship, rituals, or religion</n-checkbox><br>
+              <p class="font-weight-bold">Wisata Kuliner</p>
+              <n-checkbox v-model="checkboxes.cafe">Cafe & Resto</n-checkbox><br>
+              <p class="font-weight-bold">Wisata Hiburan</p>
+              <n-checkbox v-model="checkboxes.zoo">Zoo</n-checkbox>
+              <n-checkbox v-model="checkboxes.hiking">Hiking</n-checkbox>
+              <n-checkbox v-model="checkboxes.camping">Camping</n-checkbox>
+              <n-checkbox v-model="checkboxes.outdoor">Outdoor</n-checkbox>
+              <n-checkbox v-model="checkboxes.outdoor">Agrotourism</n-checkbox>
+            </div>
+            <hr/>
+            <div class="col-sm-12 mt-4">
               <b-form-group
                 id="input-group-1"
                 label="Start Location:"
@@ -176,31 +209,6 @@
                   />
                 </GmapMap>
               </b-form-group>              
-            </div>
-            <div class="col-sm-12 mt-4">
-              <p class="category">Select the type of tourist spot</p>
-            </div>
-            <div class="col-sm-6">
-              <p class="font-weight-bold">Wisata Alam</p>
-              <n-checkbox v-model="checkboxes.beach">Beach</n-checkbox>
-              <n-checkbox v-model="checkboxes.waterfall">Waterfall</n-checkbox>
-              <n-checkbox v-model="checkboxes.mount">Mount</n-checkbox>
-              <br>
-              <p class="font-weight-bold">Wisata Sejarah</p>
-              <n-checkbox v-model="checkboxes.museum">Museum</n-checkbox>
-              <n-checkbox v-model="checkboxes.galeri_seni">Galeri Seni</n-checkbox>
-            </div>
-            <div class="col-sm-6">
-              <p class="font-weight-bold">Wisata Budaya</p>
-              <n-checkbox v-model="checkboxes.desa_wisata">Desa Wisata</n-checkbox>
-              <n-checkbox v-model="checkboxes.taman_wisata">Taman Wisata</n-checkbox>
-              <n-checkbox v-model="checkboxes.tradisi_lokal">Tradisi Lokal</n-checkbox><br>
-              <p class="font-weight-bold">Wisata Kuliner</p>
-              <n-checkbox v-model="checkboxes.kuliner">Cafe & Resto</n-checkbox>
-              <p class="font-weight-bold">Wisata Hiburan</p>
-              <n-checkbox v-model="checkboxes.kebun_binatang">Kebun Binatang</n-checkbox>
-              <n-checkbox v-model="checkboxes.hiking">Hiking</n-checkbox>
-              <n-checkbox v-model="checkboxes.camping">Camping</n-checkbox>
             </div>
             
             <div class="col-sm-12 mt-4 mb-4">
@@ -254,18 +262,21 @@ export default {
         museum: false,
         mount: false,
         panorama: false,
-        taman_wisata: false,
+        tourist_park: false,
         wisata_alam: false,
-        desa_wisata: false,
-        kuliner: false,
-        kebun_binatang: false,
+        tourist_village: false,
+        cafe: false,
+        zoo: false,
         hiking: false,
         camping: false,
-        galeri_seni: false,
-        tradisi_lokal: false,
+        art_gallery: false,
+        local_tradition: false,
         tempat_ibadah: false,
-        agrowisata: false,
-        monumen: false,
+        agrotourism: false,
+        monument: false,
+        historical_place: false,
+        worship: false,
+        outdoor: false
       },
       date_start: [],
       date_end: [],
@@ -283,7 +294,10 @@ export default {
       hours: null,
       gambar: "",
       lat: "",
-      long: ""
+      long: "",
+      disabledDates: {
+        to:  new Date(2021, 7, 12)
+      }
     };
   },
   methods: {
@@ -293,20 +307,56 @@ export default {
       if (this.checkboxes.beach == true) {
         this.category_wisata.push(1);
       }
-      if (this.checkboxes.waterfall == true) {
+      if (this.checkboxes.mount == true) {
         this.category_wisata.push(2);
       }
-      if (this.checkboxes.museum == true) {
+      if (this.checkboxes.waterfall == true) {
         this.category_wisata.push(3);
-      }
-      if (this.checkboxes.mount == true) {
-        this.category_wisata.push(4);
       }
       if (this.checkboxes.panorama == true) {
         this.category_wisata.push(5);
       }
-      if (this.checkboxes.taman_wisata == true) {
+      if (this.checkboxes.museum == true) {
+        this.category_wisata.push(4);
+      }
+      if (this.checkboxes.art_gallery == true) {
+        this.category_wisata.push(13);
+      }
+      if (this.checkboxes.monument == true) {
+        this.category_wisata.push(17);
+      }
+      if (this.checkboxes.historical_place == true) {
+        this.category_wisata.push(19);
+      }
+      if (this.checkboxes.tourist_village == true) {
+        this.category_wisata.push(8);
+      }
+      if (this.checkboxes.tourist_park == true) {
         this.category_wisata.push(6);
+      }
+      if (this.checkboxes.local_tradition == true) {
+        this.category_wisata.push(14);
+      }
+      if (this.checkboxes.worship == true) {
+        this.category_wisata.push(15);
+      }
+      if (this.checkboxes.cafe == true) {
+        this.category_wisata.push(9);
+      }
+      if (this.checkboxes.zoo == true) {
+        this.category_wisata.push(10);
+      }
+      if (this.checkboxes.hiking == true) {
+        this.category_wisata.push(11);
+      }
+      if (this.checkboxes.camping == true) {
+        this.category_wisata.push(12);
+      }
+      if (this.checkboxes.outdoor == true) {
+        this.category_wisata.push(18);
+      }
+      if (this.checkboxes.agrotourism == true) {
+        this.category_wisata.push(16);
       }
       this.showLoader();
       //post

@@ -19,7 +19,7 @@
             <div>
               <h4 class="card-title font-weight-bold">{{ item.name }}</h4>
               <p class="card-text">
-                By {{ item.user.firstname }}
+                By {{ item.user.firstname }} - <b-badge variant="warning">Rp {{ item.budget}}</b-badge> 
               </p>
               <p class="card-text">
                 {{ item.tanggal_awal }} - {{ item.tanggal_akhir }}
