@@ -143,6 +143,7 @@ export default {
       upcoming_rute_perjalanan: [],
       past_rute_perjalanan: [],
       id_user: localStorage.getItem("id_user"),
+      timer: ''
     };
   },
   methods: {
@@ -157,30 +158,56 @@ export default {
     },
     setNullPast() {
       this.cekNullPast = true
+    },
+    setNotNullUpcoming() {
+      this.cekNullUpcoming = false
+    },
+    setNotNullPast() {
+      this.cekNullPast = false
+    },
+    updateData(){
+      var user_id = localStorage.getItem("id_user");
+      axios
+          .get("user/rute_perjalanan_update/" + user_id)
+          .then((response) => {
+            // console.log(response.data);
+          })
+          .catch((error) => console.log(error));
+      axios
+          .get("user/rute_perjalanan_upcoming/" + user_id)
+          .then((response) => {
+            this.setUpcomingRutePerjalanan(response.data);
+            if(response.data.length === 0){
+              this.setNullUpcoming();
+            }else{
+              this.setNotNullUpcoming();
+            }
+          })
+          .catch((error) => console.log(error));
+
+      axios
+          .get("user/rute_perjalanan_past/" + user_id)
+          .then((response) => {
+            this.setPastRutePerjalanan(response.data);
+            if(response.data.length === 0){
+              this.setNullPast();
+            }else{
+              this.setNotNullPast();
+            }
+          })
+          .catch((error) => console.log(error));
+    },
+    cancelAutoUpdate () {
+      clearInterval(this.timer);
     }
   },
   mounted() {
-    var user_id = localStorage.getItem("id_user");
-    axios
-      .get("user/rute_perjalanan_upcoming/" + user_id)
-      .then((response) => {
-        this.setUpcomingRutePerjalanan(response.data);
-        if(response.data.length === 0){
-          this.setNullUpcoming();
-        }
-      })
-      .catch((error) => console.log(error));
-
-    axios
-      .get("user/rute_perjalanan_past/" + user_id)
-      .then((response) => {
-        this.setPastRutePerjalanan(response.data);
-        if(response.data.length === 0){
-          this.setNullPast();
-        }
-      })
-      .catch((error) => console.log(error));
+    this.updateData();
+    this.timer = setInterval(this.updateData,5000);
   },
+  beforeDestroy () {
+    this.cancelAutoUpdate();
+  }
 };
 </script>
 

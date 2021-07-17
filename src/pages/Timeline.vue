@@ -14,7 +14,7 @@
         <h1>{{ timeline.name }}</h1>
         <h3 class="h1-seo">{{ timeline.deskripsi }}</h3>
         
-        <b-button pill variant="info" class="mr-3" v-if="id_user == timeline.user_id" v-b-modal.modal-prevent-closing>
+        <b-button pill variant="info" class="mr-3" v-if="(id_user == timeline.user_id)&&(timeline.status==0)&&(timeline.budget==' - ')" v-b-modal.modal-prevent-closing>
           Budget (Rp)</b-button
         >
         <b-button pill variant="danger" v-if="id_user == timeline.user_id" v-on:click="deleteRutePerjalanan">
