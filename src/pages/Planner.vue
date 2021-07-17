@@ -131,7 +131,8 @@
                   value-type="format"
                   format="DD-MM-YYYY:hh:00:00"
                   style="width:100%"
-                  :disabledDates="disabledDates"
+                  :disabled-date="disabledBeforeToday"
+                  :disabled-time="notBeforeNineOClock"
                   :required=true
                 ></date-picker>
               </b-form-group>
@@ -149,6 +150,7 @@
                   value-type="format"
                   format="DD-MM-YYYY"
                   style="width:100%"
+                  :disabled-date="disabledBeforeToday"
                   :required=true
                 ></date-picker>
               </b-form-group>
@@ -294,13 +296,19 @@ export default {
       hours: null,
       gambar: "",
       lat: "",
-      long: "",
-      disabledDates: {
-        to:  new Date(2021, 7, 12)
-      }
+      long: ""
     };
   },
   methods: {
+    disabledBeforeToday(date) {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+
+      return date < today ;
+    },
+    notBeforeNineOClock(date) {
+      return date.getHours() < 9 || date.getHours() > 17;
+    },
     submit() {
       this.category_wisata = [];
 
