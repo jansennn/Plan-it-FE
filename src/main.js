@@ -23,9 +23,9 @@ import 'vue-loading-overlay/dist/vue-loading.css';
 
 require('@/store/subscriber')
 
-axios.defaults.baseURL = 'http://127.0.0.1:8000/api/'
+//axios.defaults.baseURL = 'http://127.0.0.1:8000/api/'
 
-// axios.defaults.baseURL = 'https://sotardok.web.id/plan-it/api/'
+axios.defaults.baseURL = 'https://sotardok.web.id/plan-it/api/'
 
 Vue.config.productionTip = false;
 

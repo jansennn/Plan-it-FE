@@ -369,7 +369,7 @@ export default {
       this.showLoader();
       //post
       axios
-        .post("user/testInisiasi", {
+        .post("user/plan/create", {
           category_wisata: this.category_wisata,
           // destination_length: this.destination_length,
           type_transportation: this.type_transportation,
