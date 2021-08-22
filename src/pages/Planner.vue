@@ -55,7 +55,7 @@
             <div class="col-sm-6 mt-4">
               <b-form-group
                 id="input-group-1"
-                label="Name Route Travel:"
+                label="Travel Route Name:"
                 label-for="input-1"
               >
                 <b-form-input
@@ -86,7 +86,7 @@
             <div class="col-sm-6 mt-4">
               <b-form-group
                 id="input-group-1"
-                label="Type transportation:"
+                label="Transportation Type:"
                 label-for="input-1"
               >
                 <b-form-select
@@ -160,27 +160,27 @@
               <p class="category">Select the type of tourist spot</p>
             </div>
             <div class="col-sm-6">
-              <p class="font-weight-bold">Wisata Alam</p>
+              <p class="font-weight-bold">Natural Tourism</p>
               <n-checkbox v-model="checkboxes.beach">Beach</n-checkbox>
               <n-checkbox v-model="checkboxes.mount">Mountain</n-checkbox>
               <n-checkbox v-model="checkboxes.waterfall">Waterfall</n-checkbox>
               <n-checkbox v-model="checkboxes.panorama">Panorama</n-checkbox>
               <br>
-              <p class="font-weight-bold">Wisata Sejarah</p>
+              <p class="font-weight-bold">History Tour</p>
               <n-checkbox v-model="checkboxes.museum">Museum</n-checkbox>
               <n-checkbox v-model="checkboxes.art_gallery">Art Gallery</n-checkbox>
               <n-checkbox v-model="checkboxes.monument">Monument</n-checkbox>
               <n-checkbox v-model="checkboxes.historical_place">Historical Place</n-checkbox>
             </div>
             <div class="col-sm-6">
-              <p class="font-weight-bold">Wisata Budaya</p>
+              <p class="font-weight-bold">Culture Tour</p>
               <n-checkbox v-model="checkboxes.tourist_village">Tourist Village</n-checkbox>
               <n-checkbox v-model="checkboxes.tourist_park">Tourist Park</n-checkbox>
               <n-checkbox v-model="checkboxes.local_tradition">Local Tradition</n-checkbox>
               <n-checkbox v-model="checkboxes.worship">places of worship, rituals, or religion</n-checkbox><br>
-              <p class="font-weight-bold">Wisata Kuliner</p>
+              <p class="font-weight-bold">Culinary Tour</p>
               <n-checkbox v-model="checkboxes.cafe">Cafe & Resto</n-checkbox><br>
-              <p class="font-weight-bold">Wisata Hiburan</p>
+              <p class="font-weight-bold">OutDoor</p>
               <n-checkbox v-model="checkboxes.zoo">Zoo</n-checkbox>
               <n-checkbox v-model="checkboxes.hiking">Hiking</n-checkbox>
               <n-checkbox v-model="checkboxes.camping">Camping</n-checkbox>
@@ -283,8 +283,8 @@ export default {
       date_start: [],
       date_end: [],
       select_transportation: [
-        { value: "mobil", text: "Mobil" },
-        { value: "sepeda_motor", text: "Sepeda Motor" },
+        { value: "mobil", text: "Car" },
+        { value: "sepeda_motor", text: "Motorcycle" },
       ],
       type_transportation: "",
       category_wisata: [],
